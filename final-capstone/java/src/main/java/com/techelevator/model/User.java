@@ -16,6 +16,7 @@ public class User {
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 
+
    public User() { }
 
    public User(Long id, String username, String password, String authorities) {
@@ -25,7 +26,9 @@ public class User {
       this.activated = true;
    }
 
-   public Long getId() {
+
+
+     public Long getId() {
       return id;
    }
 

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserDAO {
 
     int findIdByUsername(String username);
 
-    boolean create(String username, String password, String role);
+   // boolean create(String username, String password, String role);
+   boolean create(RegisterUserDTO user);
 }

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.model.RegisterUserDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -63,10 +64,19 @@ public class UserSqlDAO implements UserDAO {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
+    //public boolean create(String username, String password, String role) {
+    public boolean create(RegisterUserDTO user) {
+        //public boolean create(User newUser) {
+        //String sqlUsers = INSERT INTO users () VALUES () ...newUSer.get(un)String username, String password, String role
+        //String sqlUserDetails = INSERT INTO userdetails  newUser.firstname, newUSer.getLastName,....
         boolean userCreated = false;
 
         // create user
+        String username = user.getUsername();
+        String password = user.getPassword();
+        String role = user.getRole();
+
+
         String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
@@ -82,6 +92,13 @@ public class UserSqlDAO implements UserDAO {
                 }
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
+
+        //Get the user_id from the users table
+
+
+        //Insert into userdetails table
+        String sqlInsertIntoUserDetails = "INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sqlInsertIntoUserDetails,newUserId,user.getFirstName(),user.getLastName(),user.getEmailId(),user.getContactNumber(),user.isStudent());
 
         return userCreated;
     }

@@ -23,3 +23,5 @@ TO chatbotdb_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO chatbotdb_appuser;
+
+
