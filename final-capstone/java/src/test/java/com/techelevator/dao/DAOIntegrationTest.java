@@ -20,8 +20,8 @@ public abstract class DAOIntegrationTest {
     @BeforeClass
     public static void setupDataSource() {
         dataSource = new SingleConnectionDataSource();
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
-        dataSource.setUsername("final_capstone_appuser");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_chatbotdb");
+        dataSource.setUsername("chatbotdb_appuser");
         dataSource.setPassword("finalcapstone");
         /* The following line disables autocommit for connections
          * returned by this DataSource. This allows us to rollback
