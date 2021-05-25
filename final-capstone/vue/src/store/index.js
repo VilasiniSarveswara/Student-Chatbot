@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+
 Vue.use(Vuex)
 
 /*
@@ -19,7 +20,9 @@ if (currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    user_details: {}
+    
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -33,7 +36,11 @@ export default new Vuex.Store({
     },
 
     //mutator to set the userDetails in the store for easy access to that information.
+    SET_USER_DETAILS(state, user_details){
 
+      state.user_details = user_details;
+      
+    },
 
     LOGOUT(state) {
       localStorage.removeItem('token');

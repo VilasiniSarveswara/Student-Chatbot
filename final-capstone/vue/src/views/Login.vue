@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
 import authService from "../services/AuthService";
 
 export default {
@@ -60,7 +61,20 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/userdetails/");
+            
+             AuthService.getUserDetails(this.user.username).then( (response) =>{
+              
+               console.log(response.data);
+
+              const user_details = response.data;
+
+              this.$store.commit("SET_USER_DETAILS", user_details);
+
+              this.$router.push("/");
+
+             });
+
+            
           }
         })
         .catch((error) => {

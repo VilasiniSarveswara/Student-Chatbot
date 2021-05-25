@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Home</h1>
     <button>My Account</button>
-    <p>Welcome, {{ Tamla }} Student</p>
+    <p>Welcome, {{ this.$store.state.user_details.firstName}} Student</p>
     <nav class="navigation">
       <ul>
         <li id="nav-button">
