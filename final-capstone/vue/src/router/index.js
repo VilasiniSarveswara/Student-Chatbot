@@ -39,15 +39,15 @@ const router = new Router({
       }
     },
     {
-      path: "/userdetails/:username",
+      path: "/userdetails",
       name: "userdetails",
       component: UserDetails,
       meta: {
         requiresAuth: false
       }
     },
-    
-    
+
+
     {
       path: "/logout",
       name: "logout",

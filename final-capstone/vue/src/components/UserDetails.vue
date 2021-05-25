@@ -1,31 +1,28 @@
 <template>
   <div>
-
+    {{ user.firstName }}
   </div>
 </template>
 
 <script>
-import AuthService from '../services/AuthService.js'
+import AuthService from "../services/AuthService.js";
 export default {
-    name: "userdetails",
-    data() {
-        return {
-            user: {
+  name: "userdetails",
+  data() {
+    return {
+      user: {},
+    };
+  },
+  created() {
+    // const username = this.$route.params.username;
+    const username = this.$store.state.user.username;
 
-            }
-        }
-    },
-    created () {
-        const username = this.$route.params.username
-        AuthService.getUserDetails(username).then(response => {
-            this.user= response.data
-        }) 
-    }
-
-
-}
+    AuthService.getUserDetails(username).then((response) => {
+      this.user = response.data;
+    });
+  },
+};
 </script>
 
 <style>
-
 </style>
