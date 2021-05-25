@@ -19,6 +19,7 @@ export default {
 
     AuthService.getUserDetails(username).then((response) => {
       this.user = response.data;
+      // call your mutator to set user details in store
     });
   },
 };
