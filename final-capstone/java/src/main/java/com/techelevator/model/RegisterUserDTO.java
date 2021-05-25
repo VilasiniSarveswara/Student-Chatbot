@@ -18,6 +18,16 @@ public class RegisterUserDTO {
     private long contactNumber;
     private boolean isStudent;
 
+
+    public RegisterUserDTO(String firstName, String lastName, String emailId, long contactNumber, boolean isStudent){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailId = emailId;
+        this.contactNumber = contactNumber;
+        this.isStudent = isStudent;
+
+    }
+
     public String getUsername() {
         return username;
     }

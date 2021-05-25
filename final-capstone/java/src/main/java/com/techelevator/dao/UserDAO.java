@@ -17,4 +17,7 @@ public interface UserDAO {
 
    // boolean create(String username, String password, String role);
    boolean create(RegisterUserDTO user);
+
+   RegisterUserDTO findUserByUsername(String username);
+
 }
