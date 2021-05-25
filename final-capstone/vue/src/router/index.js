@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import UserDetails from '../components/UserDetails.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,16 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/userdetails/:username",
+      name: "userdetails",
+      component: UserDetails,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    
+    
     {
       path: "/logout",
       name: "logout",
