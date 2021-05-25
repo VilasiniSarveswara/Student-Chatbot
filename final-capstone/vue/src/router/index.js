@@ -5,7 +5,10 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import UserDetails from '../components/UserDetails.vue'
+import Pathway from '../components/Pathway.vue'
+import Curriculum from '../components/Curriculum.vue'
+import Quotes from '../components/Quotes.vue'
+import Positions from '../components/Positions.vue'
 
 Vue.use(Router)
 
@@ -38,15 +41,42 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    
+    
     {
-      path: "/userdetails",
-      name: "userdetails",
-      component: UserDetails,
+      path: "/curriculum",
+      name: "curriculum",
+      component: Curriculum,
       meta: {
         requiresAuth: false
       }
     },
-
+    {
+      path: "/pathway",
+      name: "pathway",
+      component: Pathway,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/quotes",
+      name: "quotes",
+      component: Quotes,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/positions",
+      name: "positions",
+      component: Positions,
+      meta: {
+        requiresAuth: false
+      }
+    },
+  
+  
 
     {
       path: "/logout",

@@ -6,16 +6,16 @@
     <nav class="navigation">
       <ul>
         <li id="nav-button">
-          <router-link> Help related to Pathway</router-link>
+          <router-link v-bind:to='{name: "pathway"}'> Help related to Pathway</router-link>
         </li>
         <li id="nav-button">
-          <router-link> Help related to curriculum </router-link>
+          <router-link v-bind:to='{name: "curriculum"}'> Help related to curriculum </router-link>
         </li>
         <li id="nav-button">
-          <router-link> Get motivational quotes </router-link>
+          <router-link v-bind:to=' {name: "quotes"}'> Get motivational quotes </router-link>
         </li>
         <li id="nav-button">
-          <router-link> Open Positions </router-link>
+          <router-link v-bind:to='{name: "positions"}'> Open Positions </router-link>
         </li>
       </ul>
     </nav>
