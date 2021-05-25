@@ -14,6 +14,3 @@ ADD PRIMARY KEY (user_id);
 ALTER TABLE userdetails
 DROP COLUMN id;
 
---Insert into userdetails
-INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent) VALUES (3,'Ron','Fleming','ronf@gmail.com',469321456,true);
-INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent) VALUES (?,?,?,?,?,?);

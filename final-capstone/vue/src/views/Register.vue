@@ -34,18 +34,18 @@
         required
       />
 
-      <label for="email">Email</label>
+      <label for="emailId">Email</label>
       <input
-        type="email"
+        type="text"
         id="email"
         class="form-control"
-        v-model="user.email"
+        v-model="user.emailId"
         required
       />
 
       <label for="contact-number">Phone Number</label>
       <input
-        type="tel"
+        type="number"
         id="contact-number"
         class="form-control"
         v-model="user.contactNumber"
@@ -55,10 +55,12 @@
       <!-- TODO need to find how the radio ties into our information to relay that to the database -->
       <br />
       <label for="userIsStudent">Student </label>
-      <input type="radio" id="student" name="student" value="student" />
-      <br />
-      <label for="userIsAlumni">Alumni </label>
-      <input type="radio" id="alumni" name="alumni" value="alumni" />
+      <input
+        type="checkbox"
+        id="isStudent"
+        v-model="user.isStudent"
+        :checked="true"
+      />
       <br />
 
       <label for="password" class="sr-only">Password</label>
@@ -98,6 +100,11 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
+        firstName: "",
+        lastName: "",
+        emailId: "",
+        contactNumber: 0,
+        isStudent: false,
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",

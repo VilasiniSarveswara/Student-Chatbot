@@ -15,7 +15,7 @@ public class RegisterUserDTO {
     private String firstName;
     private String lastName;
     private String emailId;
-    private int contactNumber;
+    private long contactNumber;
     private boolean isStudent;
 
     public String getUsername() {
@@ -74,11 +74,11 @@ public class RegisterUserDTO {
         this.emailId = emailId;
     }
 
-    public int getContactNumber() {
+    public long getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(long contactNumber) {
         this.contactNumber = contactNumber;
     }
 
