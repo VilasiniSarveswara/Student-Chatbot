@@ -1,14 +1,14 @@
 <template>
-  <div>Positions</div>
+  <div>
+    <h1>Positions</h1>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "positions"
-
-}
+  name: "positions",
+};
 </script>
 
 <style>
-
 </style>

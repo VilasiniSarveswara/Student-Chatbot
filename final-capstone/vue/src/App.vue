@@ -66,4 +66,10 @@ html {
     rgb(79, 155, 231)
   );
 }
+h1 {
+  color: #caf0f8;
+  margin-left: 3.5%;
+  font-family: "Oswald", sans-serif;
+  font-size: 48px;
+}
 </style>
