@@ -16,6 +16,8 @@
         Open Positions
       </router-link>
 
+      <router-link v-bind:to="{ name: 'my-account' }">My Account</router-link>
+
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
@@ -71,5 +73,9 @@ h1 {
   margin-left: 3.5%;
   font-family: "Oswald", sans-serif;
   font-size: 48px;
+}
+a {
+  color: #caf0f8;
+  margin-left: -2%;
 }
 </style>

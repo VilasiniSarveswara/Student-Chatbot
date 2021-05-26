@@ -9,6 +9,7 @@ import Pathway from '../components/Pathway.vue'
 import Curriculum from '../components/Curriculum.vue'
 import Quotes from '../components/Quotes.vue'
 import Positions from '../components/Positions.vue'
+import MyAccount from '../components/MyAccount.vue'
 
 Vue.use(Router)
 
@@ -41,8 +42,8 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    
-    
+
+
     {
       path: "/curriculum",
       name: "curriculum",
@@ -75,8 +76,16 @@ const router = new Router({
         requiresAuth: false
       }
     },
-  
-  
+    {
+      path: "/myaccount",
+      name: "my-account",
+      component: MyAccount,
+      meta: {
+        requiresAuth: false
+      }
+    },
+
+
 
     {
       path: "/logout",

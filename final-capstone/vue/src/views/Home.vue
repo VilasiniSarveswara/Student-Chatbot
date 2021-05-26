@@ -2,11 +2,11 @@
   <div class="home">
     <div id="heading-wrapper">
       <h2 id="welcome-message">
-        Welcome, {{ this.$store.state.user_details.firstName }}
+        Welcome, {{ this.$store.state.user_details.firstName }}!
       </h2>
-      <h4>Current Student</h4>
+      <h6 v-if="this.$store.state.user_details.student">Student</h6>
+      <h6 v-else>Alumni</h6>
     </div>
-    <button>My Account</button>
   </div>
 </template>
 
@@ -36,27 +36,23 @@ export default {
   text-align: center;
   border-radius: 7px;
 } */
-h4 {
-  font-size: 48px;
+h6 {
+  font-size: 32px;
   color: #caf0f8;
+  margin: 0%;
   margin-left: 3%;
-  margin-bottom: 0.5%;
   font-family: "Oswald", sans-serif;
 }
 h2 {
   font-size: 60px;
   font-family: "Oswald", sans-serif;
   margin-bottom: 0%;
+  margin-top: 3%;
+  margin-left: 3%;
 }
 
 #welcome-message {
   text-transform: capitalize;
-}
-
-button {
-  margin-left: 3.5%;
-  background-color: beige;
-  font-size: 14px;
 }
 </style>
 
