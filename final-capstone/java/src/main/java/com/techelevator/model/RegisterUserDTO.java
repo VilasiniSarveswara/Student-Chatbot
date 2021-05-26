@@ -4,13 +4,13 @@ import javax.validation.constraints.NotEmpty;
 
 public class RegisterUserDTO {
 
-    @NotEmpty
+
     private String username;
-    @NotEmpty
+
     private String password;
-    @NotEmpty
+
     private String confirmPassword;
-    @NotEmpty(message = "Please select a role for this user.")
+
     private String role;
     private String firstName;
     private String lastName;
@@ -27,6 +27,20 @@ public class RegisterUserDTO {
         this.isStudent = isStudent;
 
     }
+
+//    public RegisterUserDTO(String username, String password, String confirmPassword, String role, String firstName, String lastName, String emailId, long contactNumber, boolean isStudent) {
+//        this.username = username;
+//        this.password = password;
+//        this.confirmPassword = confirmPassword;
+//        this.role = role;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.emailId = emailId;
+//        this.contactNumber = contactNumber;
+//        this.isStudent = isStudent;
+//    }
+
+    public RegisterUserDTO(){};
 
     public String getUsername() {
         return username;

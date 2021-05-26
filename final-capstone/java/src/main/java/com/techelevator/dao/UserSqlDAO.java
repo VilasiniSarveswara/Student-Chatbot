@@ -132,7 +132,25 @@ public class UserSqlDAO implements UserDAO {
         }
     }
 
+    @Override
+    public void updateUserDetails(RegisterUserDTO registeredUser) {
 
+        String username = registeredUser.getUsername();
+        String lastName = registeredUser.getLastName();
+        String emailId = registeredUser.getEmailId();
+        long contactNumber = registeredUser.getContactNumber();
+        boolean isStudent = registeredUser.isStudent();
+
+        int id = findIdByUsername(username);
+
+        String sql = "UPDATE userdetails SET lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; ";
+
+        jdbcTemplate.update(sql, lastName, emailId, contactNumber, isStudent, id);
+
+
+
+
+    }
 
 
     private User mapRowToUser(SqlRowSet rs) {

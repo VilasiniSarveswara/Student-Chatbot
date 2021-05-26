@@ -52,6 +52,13 @@ public class AuthenticationController {
         return new ResponseEntity<>(new LoginResponse(jwt, user), httpHeaders, HttpStatus.OK);
     }
 
+
+    @RequestMapping(path= "/updateUserDetails", method = RequestMethod.PUT)
+    public void updateUserDetails(@RequestBody RegisterUserDTO registerUserDTO){
+        userDAO.updateUserDetails(registerUserDTO);
+
+    }
+
     @RequestMapping(path = "/userdetails/{username}", method = RequestMethod.GET)
     public RegisterUserDTO getUserGivenUsername(@PathVariable String username){
 
