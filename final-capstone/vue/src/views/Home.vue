@@ -75,5 +75,21 @@ h2 {
 #welcome-message {
   text-transform: capitalize;
 }
+form {
+  margin-left: 3.5%;
+  margin-top: 3%;
+}
+
+input {
+  margin-left: 0.5%;
+  margin-top: 2%;
+}
+label {
+  font-size: 22px;
+  color: #caf0f8;
+  font-family: "Oswald", sans-serif;
+  margin-top: 1%;
+}
+
 </style>
 
