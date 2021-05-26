@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Welcome to Pathway Assistant!</h2>
+    <h2>Welcome to the Pathway Assistant!</h2>
   </div>
 </template>
 
