@@ -29,7 +29,7 @@
 </template>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Open+Sans&family=Oswald:wght@500&family=Poppins&family=Rubik&family=Spartan&display=swap");
 html {
   background-image: url(../src/Images/pexels-harrison-candlin-2441454.jpg);
   background-attachment: fixed;
@@ -69,13 +69,21 @@ html {
   );
 }
 h1 {
+  font-size: 60px;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 0%;
+  margin-top: 3.5%;
+  margin-left: 3%;
+  letter-spacing: 3px;
   color: #caf0f8;
-  margin-left: 3.5%;
-  font-family: "Oswald", sans-serif;
-  font-size: 48px;
 }
-a {
+h2 {
+  font-size: 60px;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 0%;
+  margin-top: 3.5%;
+  margin-left: 3%;
+  letter-spacing: 3px;
   color: #caf0f8;
-  margin-left: -2%;
 }
 </style>

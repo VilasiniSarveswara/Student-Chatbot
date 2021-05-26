@@ -12,9 +12,8 @@
       >
         Thank you for registering, please sign in.
       </div>
-      <h6>
-        <label for="username" class="sr-only">Username</label>
-      </h6>
+
+      <label for="username" id="first-input" class="sr-only">Username:</label>
 
       <input
         type="text"
@@ -25,9 +24,8 @@
         required
         autofocus
       />
-      <h6>
-        <label for="password" class="sr-only">Password</label>
-      </h6>
+      <br />
+      <label for="password" class="sr-only">Password: </label>
 
       <input
         type="password"
@@ -37,13 +35,10 @@
         v-model="user.password"
         required
       />
-      <h6>
-        <button type="submit">Sign in</button>
-      </h6>
+      <br />
+      <button type="submit">Sign in</button>
 
-      <h6>
-        <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      </h6>
+      <router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>
   </div>
 </template>
@@ -96,22 +91,48 @@ export default {
 };
 </script>
 <style scoped>
-h6 {
-  font-size: 20px;
-  color: #caf0f8;
-  margin: 0%;
-  margin-left: 3%;
-  font-family: "Oswald", sans-serif;
-}
 form {
-  margin-left: 3%;
-}
-label,
-input {
-  margin-bottom: 1%;
+  margin-left: 3.5%;
+  margin-top: 3%;
 }
 h1 {
+  margin: 0;
+}
+
+label {
+  font-size: 22px;
   color: #caf0f8;
+  font-family: "Oswald", sans-serif;
+  margin-top: 1%;
+}
+input {
   margin-left: 0.5%;
+  margin-top: 2%;
+}
+
+#first-input {
+  margin-top: 0%;
+}
+
+a {
+  margin-top: 2%;
+  margin-left: 35px;
+  font-size: 22px;
+  font-family: "Oswald", sans-serif;
+  color: #caf0f8;
+}
+a:hover {
+  color: #48cae4;
+}
+button {
+  margin-top: 2%;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+
+.alert {
+  font-size: 40px;
+  color: #caf0f8;
+  font-family: "Oswald", sans-serif;
 }
 </style>
