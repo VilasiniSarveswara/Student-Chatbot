@@ -27,9 +27,17 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/',
+      name: 'login',
+      component: Login,
       meta: {
         requiresAuth: true
       }
@@ -49,7 +57,7 @@ const router = new Router({
       name: "curriculum",
       component: Curriculum,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -57,7 +65,7 @@ const router = new Router({
       name: "pathway",
       component: Pathway,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -65,7 +73,7 @@ const router = new Router({
       name: "quotes",
       component: Quotes,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -73,7 +81,7 @@ const router = new Router({
       name: "positions",
       component: Positions,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -81,7 +89,7 @@ const router = new Router({
       name: "my-account",
       component: MyAccount,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
 

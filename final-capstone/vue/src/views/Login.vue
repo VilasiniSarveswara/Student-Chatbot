@@ -75,7 +75,7 @@ export default {
 
               this.$store.commit("SET_USER_DETAILS", user_details);
 
-              this.$router.push("/");
+              this.$router.push("/home");
             });
           }
         })
