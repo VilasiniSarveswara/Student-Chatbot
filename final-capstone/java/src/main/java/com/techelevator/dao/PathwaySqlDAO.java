@@ -24,7 +24,7 @@ public class PathwaySqlDAO implements PathwayDAO{
 
         if(topic.equalsIgnoreCase("technical")){
 
-            int id = (int) (Math.random()* 16);
+            int id = (int) ((Math.random()* 16) + 1) ;
 
 
             String sql = "SELECT response FROM technical_questions WHERE id = ?;";

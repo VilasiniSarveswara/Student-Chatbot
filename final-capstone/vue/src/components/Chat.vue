@@ -1,26 +1,5 @@
 <template>
-  <div>
-    <div class="chat">
-      <div class="chat-container" ref="chatbox">
-        <ul class="chat-box-list">
-          <li
-            class="message"
-            v-for="(message, index) in messages"
-            :key="index"
-            :class="message.author"
-          >
-            <p>
-              <span> {{ message.text }} </span>
-            </p>
-          </li>
-        </ul>
-        <div class="chat-inputs">
-          <input type="text" v-model="message" @keyup.enter="sendMessage" />
-          <button @click="sendMessage">Send</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div></div>
   <!-- in Styling, float left and float right will have the messages displaying on either side, and using the dynamic class 
   messages can be put into different colors. with the sendMessage function we need to be able to send a request to the back end
   and we need to be able to get the response to put into our messages from the back end's answer.
@@ -30,11 +9,15 @@
 
 <script>
 export default {
-  name: "Chat",
+  name: "chat",
   data: () => ({
     message: "",
     messages: [],
   }),
+  greetings: [
+    "How can I help you today, *name*",
+    "What can I do for you today?",
+  ],
   methods: {
     sendMessage() {
       this.message.push({
