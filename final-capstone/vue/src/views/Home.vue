@@ -71,12 +71,13 @@ import Chat from "../components/Chat.vue";
 export default {
   name: "home",
   components: Chat,
-  showChatWindow: false,
-  showStartChatBtn: true,
+
   data() {
     return {
       message: "",
       messages: [],
+      showChatWindow: false,
+      showStartChatBtn: true,
     };
   },
   methods: {
@@ -145,11 +146,8 @@ label {
   font-family: "Oswald", sans-serif;
   margin-top: 1%;
 }
-.startchat {
-  visibility: visible;
-}
 
-.startchat {
+button {
   position: fixed;
   bottom: 10px;
   right: 10px;
