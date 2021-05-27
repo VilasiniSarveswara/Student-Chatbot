@@ -59,6 +59,8 @@ public class AuthenticationController {
 
     }
 
+
+
     @RequestMapping(path = "/userdetails/{username}", method = RequestMethod.GET)
     public RegisterUserDTO getUserGivenUsername(@PathVariable String username){
 
