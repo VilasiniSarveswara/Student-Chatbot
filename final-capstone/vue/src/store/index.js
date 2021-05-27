@@ -21,8 +21,9 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    user_details: {}
-    
+    user_details: {},
+    chat: {}
+
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -36,10 +37,10 @@ export default new Vuex.Store({
     },
 
     //mutator to set the userDetails in the store for easy access to that information.
-    SET_USER_DETAILS(state, user_details){
+    SET_USER_DETAILS(state, user_details) {
 
       state.user_details = user_details;
-      
+
     },
 
     LOGOUT(state) {
@@ -49,6 +50,7 @@ export default new Vuex.Store({
       state.user = {};
       //needs to reset the state.userdetails as well when logging out
       axios.defaults.headers.common = {};
-    }
+    },
+
   }
 })

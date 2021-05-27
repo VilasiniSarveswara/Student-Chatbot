@@ -14,6 +14,9 @@
         everything you need!
       </p>
     </article>
+    <button class="chat-assistant-button">Start Chat</button>
+    <iframe></iframe>
+    <chat />
   </div>
 </template>
 
@@ -91,5 +94,20 @@ label {
   margin-top: 1%;
 }
 
+button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border: solid;
+  border-width: 30px;
+}
+
+i-frame {
+  position: fixed;
+  width: 350px;
+  height: 500px;
+  bottom: 10px;
+  right: 10px;
+}
 </style>
 
