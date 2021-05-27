@@ -18,7 +18,7 @@
       <h6 v-else>Alumni</h6>
     </div>
 
-    <chat />
+    //<chat />
     <button
       id="startchat"
       v-if="this.showStartChatBtn"
@@ -29,8 +29,10 @@
     </button>
     <div class="chat" v-else>
       <div class="chat-container" ref="chatbox">
-        <div v-for="greeting in greetings" v-bind:key="greeting">
-          {{ greeting }}
+        <div>
+          <p v-for="greeting in greetings" v-bind:key="greeting.index">
+            {{ greeting }}
+          </p>
         </div>
         <ul class="chat-box-list">
           <li
@@ -51,7 +53,7 @@
             v-model="message"
             @keyup.enter="sendMessage"
           />
-          <button @click="sendMessage">Send</button>
+          <button v-on:click="sendMessage">Send</button>
         </div>
       </div>
     </div>
@@ -67,6 +69,7 @@
 
 <script>
 import Chat from "../components/Chat.vue";
+import AuthService from "../services/AuthService.js";
 
 export default {
   name: "home",
@@ -74,37 +77,96 @@ export default {
 
   data() {
     return {
+      topic: "",
       message: "",
       messages: [],
+      toBeDecidedtopic: "",
       showChatWindow: false,
       showStartChatBtn: true,
+      pathwayOptions: [
+        "Sample Technical Questions",
+        "Sample Behavioral Questions",
+        "Cover Letter Help",
+        "Interview Attire",
+      ],
+      greetings: [
+        "Hi, how can I help you today?",
+        "Please choose from the following options:",
+        "1. Pathway ",
+        "2. Curriculum",
+        "3. Find Open Positions",
+      ],
     };
   },
   methods: {
     startChat() {
       this.showChatWindow = true;
       this.showStartChatBtn = false;
-      this.message = "Hi, how can I help you today?";
     },
+
+    topicToBeDecided(message) {
+      var msg = message.toLowerCase();
+      if (msg.includes("pathway") || msg.includes("pathways")) {
+        this.topic = "pathway";
+        this.messages.push({
+          text: "Sure, what are you looking for in " + this.topic + "?",
+          author: "bot",
+        });
+
+        this.messages.push({
+          text: "Here are some options to choose from: ",
+          author: "bot",
+        });
+
+        this.pathwayOptions.forEach((option) => {
+          this.messages.push({ text: option, author: "bot" });
+        });
+      } else if (
+        msg.includes("curriculum") ||
+        msg.includes("class") ||
+        msg.includes("homework")
+      ) {
+        this.topic = "curriculum";
+      } else if (
+        msg.includes("position") ||
+        msg.includes("job") ||
+        msg.includes("opportunities")
+      ) {
+        this.topic = "job";
+      } else if (msg.includes("technical")) {
+        this.topic = "technical";
+        AuthService.getPathwayDetails(this.topic).then((response) => {
+          if (response.status == 200) {
+            this.messages.push({
+              text:
+                "Here's something I think will be useful: " +
+                response.data.responseText,
+              author: "bot",
+            });
+          }
+        });
+      } else if (msg.includes("behavioral")) {
+        this.topic = "behavioral";
+        AuthService.getPathwayDetails(this.topic);
+      } else if (msg.includes("cover") || msg.includes("letter")) {
+        this.topic = "cover";
+      } else if (
+        msg.includes("attire") ||
+        msg.includes("dress") ||
+        msg.includes("business wear") ||
+        msg.includes("cloth")
+      ) {
+        this.topic = "business wear";
+      }
+    },
+
     sendMessage() {
-      this.message.push({
+      this.messages.push({
         text: this.message,
         author: "client",
       });
-
-      this.message = ""
-
-        //get request
-        .then((response) => {
-          this.messages.push({
-            text: response.data.output,
-            author: "server",
-          });
-
-          this.nextTick(() => {
-            this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
-          });
-        });
+      this.topicToBeDecided(this.message);
+      this.message = "";
     },
   },
 };
@@ -152,13 +214,15 @@ button {
   bottom: 10px;
   right: 10px;
 }
-.chat-inputs {
+.chat-container {
   position: fixed;
   width: 1250px;
   height: 700px;
   border: 1px solid black;
   bottom: 10px;
   right: 10px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .chatinputbox {
   position: fixed;
