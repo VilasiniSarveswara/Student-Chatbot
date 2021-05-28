@@ -42,17 +42,79 @@ public class PathwaySqlDAO implements PathwayDAO{
         }
         else if(topic.equalsIgnoreCase("cover")){
 
-        }
-        else if(topic.equalsIgnoreCase("business wear")){
+            int id = (int) ((Math.random()* 7) + 1) ;
+
+
+            String sql = "SELECT response FROM cover_letter WHERE id = ?;";
+
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+
+            if(result.next()){
+                String responseLink = result.getString("response");
+
+                Response response = new Response();
+                response.setResponseLink(responseLink);
+                return response;
+            }
 
         }
-        else if(topic.equalsIgnoreCase("jobs")){
+        else if(topic.equalsIgnoreCase("business_attire")){
+
+            int id = (int) ((Math.random()* 3) + 1) ;
+
+
+            String sql = "SELECT response FROM business_attire WHERE id = ?;";
+
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+
+            if(result.next()){
+                String responseLink = result.getString("response");
+
+                Response response = new Response();
+                response.setResponseLink(responseLink);
+                return response;
+            }
+
+
 
         }
+
+
         else if(topic.equalsIgnoreCase("behavioral")){
 
+            int id = (int) ((Math.random()* 19) + 1) ;
+
+
+            String sql = "SELECT response FROM behavioral_questions WHERE id = ?;";
+
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+
+            if(result.next()){
+                String responseText = result.getString("response");
+
+                Response response = new Response();
+                response.setResponseText(responseText);
+                return response;
+            }
+
+
+
+
         }
-        else if(topic.equalsIgnoreCase("general pathway")){
+        else if(topic.equalsIgnoreCase("general")){
+
+            String sql = "SELECT * FROM pathway_general";
+
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+
+            if(result.next()){
+                String responseLink = result.getString("response");
+
+                Response response = new Response();
+                response.setResponseLink(responseLink);
+                return response;
+            }
+
 
         }
 
