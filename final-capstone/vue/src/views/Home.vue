@@ -338,11 +338,11 @@ button:hover {
   margin-top: 2.3%;
 }
 
-.message.bot {
+.bot span {
   float: left;
 }
 
-.message.client {
+.client span {
   float: right;
 }
 </style>
