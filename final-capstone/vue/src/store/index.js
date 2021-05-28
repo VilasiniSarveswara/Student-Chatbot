@@ -22,7 +22,9 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     user_details: {},
-    chat: {}
+    chat: {},
+    responseTextList: [],
+    responseLinkList: []
 
   },
   mutations: {
@@ -41,6 +43,10 @@ export default new Vuex.Store({
 
       state.user_details = user_details;
 
+    },
+
+    SET_RESPONSE_TEXT(state, responseTextObject) {
+      state.responseTextList = responseTextObject
     },
 
     LOGOUT(state) {

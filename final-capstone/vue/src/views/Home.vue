@@ -40,8 +40,9 @@
         <div class="chat-container" ref="chatbox">
           <ul class="chat-box-list">
             <li class="bot">
-              <p v-for="greeting in greetings" v-bind:key="greeting.index">
-                <span> {{ greeting }} </span>
+              <span>{{ this.greeting }}</span> <br />
+              <p v-for="option in options" v-bind:key="option.index">
+                <span> {{ option }} </span> <br />
               </p>
             </li>
             <li
@@ -90,20 +91,37 @@ export default {
 
   data() {
     return {
+      NumberOfYes: 0,
+      pathwayCounter: 0,
+      currentIndex: 0,
       topic: "",
       message: "",
       messages: [],
       toBeDecidedtopic: "",
       showChatWindow: false,
       showStartChatBtn: true,
-      greetings: [
-        "Hi, how can I help you today?",
+      options: [
         "Please choose from the following options:",
-        "Pathway, Curriculum, Find Open Positions",
+        "Pathway",
+        "Curriculum",
+        "Find Open Positions",
       ],
+      greeting: "Hi, how can I help you today?",
     };
   },
   methods: {
+    printTechnicalResponses() {
+      this.currentIndex = Math.floor(Math.random() * 17);
+      this.messages.push({
+        text: "Here's a sample Technical Interview Question: ",
+        responseText: this.$store.state.responseTextList[this.currentIndex],
+        author: "bot",
+      });
+      this.messages.push({
+        text: "Was that helpful?",
+        author: "bot",
+      });
+    },
     startChat() {
       this.showChatWindow = true;
       this.showStartChatBtn = false;
@@ -111,8 +129,10 @@ export default {
 
     topicToBeDecided(message) {
       var msg = message.toLowerCase();
+      this.message = "";
       if (msg.includes("pathway") || msg.includes("pathways")) {
         this.topic = "pathway";
+        this.pathwayCounter++;
         this.messages.push({
           text: "Sure, what are you looking for in " + this.topic + "?",
           author: "bot",
@@ -137,15 +157,18 @@ export default {
         this.topic = "job";
       } else if (msg.includes("technical")) {
         this.topic = "technical";
-        AuthService.getPathwayDetails(this.topic).then((response) => {
-          if (response.status == 200) {
-            this.messages.push({
-              text: "Here's a sample Technical Interview Question: ",
-              responseText: response.data.responseText,
-              author: "bot",
-            });
-          }
-        });
+
+        if (this.pathwayCounter == 1) {
+          AuthService.getPathwayDetails(this.topic).then((response) => {
+            if (response.status == 200) {
+              this.$store.commit(
+                "SET_RESPONSE_TEXT",
+                response.data.responseTextList
+              );
+            }
+          });
+        }
+        this.printTechnicalResponses();
       } else if (msg.includes("behavioral")) {
         this.topic = "behavioral";
         AuthService.getPathwayDetails(this.topic).then((response) => {
@@ -192,9 +215,32 @@ export default {
         text: this.message,
         author: "client",
       });
-      this.topicToBeDecided(this.message);
-      this.message = "";
-    },
+      if (
+        this.message.toLowerCase().includes("yes") ||
+        this.message.toLowerCase().includes("yea") ||
+        this.message.toLowerCase().includes("yeah") ||
+        this.message.toLowerCase().includes("ya") ||
+        this.message.toLowerCase().includes("sure")
+      ) {
+        this.NumberOfYes++;
+        if (this.NumberOfYes == 1) {
+          this.messages.push({
+            text: "Cool, anything else I can help you with today?",
+            author: "bot",
+          });
+          this.message = "";
+        } else if (this.NumberOfYes == 2) {
+          for (let i = 0; i < this.options.length; i++) {
+            this.messages.push({ text: this.options[i], author: "bot" });
+            this.NumberOfYes = 0;
+          }
+          this.message = "";
+        } //end of else if
+      } //end of if block
+      else {
+        this.topicToBeDecided(this.message);
+      }
+    }, //end of sendMessage,
   },
 };
 </script>
@@ -347,6 +393,8 @@ button:hover {
 .bot span {
   float: left;
   margin: 3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
 }
 .bot p {
   font-family: "Open Sans", sans-serif;
