@@ -11,5 +11,9 @@ export default {
   },
   getUserDetails(username) {
     return axios.get(`/userdetails/${username}`)
+  },
+
+  getPathwayDetails(topic) {
+    return axios.get(`/pathway/${topic}`)
   }
 }
