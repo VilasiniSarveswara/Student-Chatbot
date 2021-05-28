@@ -24,36 +24,37 @@
       <h3 id="contactnumber" class="contact">
         {{ this.$store.state.user_details.contactNumber }}
       </h3>
-      <button>Update Account</button>
     </div>
 
-    <form class="update">
-      <label for="username" id="first-input">Username</label>
-      <input type="text" v-model="this.$store.state.user.username" /> <br />
-      <label for="firstname">Firstname</label>
-      <input type="text" v-model="this.$store.state.user_details.firstName" />
-      <br />
-      <label for="lastname">Lastame</label>
+    <div class="update-form-wrapper">
+      <form class="update">
+        <label for="username" id="first-input">Username</label>
+        <input type="text" v-model="this.$store.state.user.username" /> <br />
+        <label for="firstname">Firstname</label>
+        <input type="text" v-model="this.$store.state.user_details.firstName" />
+        <br />
+        <label for="lastname">Lastame</label>
 
-      <input type="text" v-model="this.$store.state.user_details.lastName" />
-      <br />
-      <label for="emailId">Email Id</label>
-      <input type="text" v-model="this.$store.state.user_details.emailId" />
-      <br />
-      <label for="contactnumber">Contact Number</label>
-      <input
-        type="text"
-        v-model="this.$store.state.user_details.contactNumber"
-      />
-      <br />
-      <label for="checkbox">Student (leave unchecked if alumni)</label>
-      <input
-        type="checkbox"
-        v-model="this.$store.state.user_details.isStudent"
-      />
+        <input type="text" v-model="this.$store.state.user_details.lastName" />
+        <br />
+        <label for="emailId">Email Id</label>
+        <input type="text" v-model="this.$store.state.user_details.emailId" />
+        <br />
+        <label for="contactnumber">Contact Number</label>
+        <input
+          type="text"
+          v-model="this.$store.state.user_details.contactNumber"
+        />
+        <br />
+        <label for="checkbox">Student (leave unchecked if alumni)</label>
+        <input
+          type="checkbox"
+          v-model="this.$store.state.user_details.isStudent"
+        />
 
-      <button>Update</button>
-    </form>
+        <button>Update</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -78,7 +79,7 @@ input {
 }
 label {
   font-size: 22px;
-  color: #caf0f8;
+  color: antiquewhite;
   font-family: "Oswald", sans-serif;
   margin-top: 1%;
 }
@@ -89,11 +90,15 @@ label {
 .contact {
   text-transform: capitalize;
   font-size: 22px;
-  color: #caf0f8;
+  color: antiquewhite;
   font-family: "Oswald", sans-serif;
   padding: 10px;
   margin: 0;
-  background-color: cadetblue;
+  width: 200px;
+}
+
+h3 {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .accountdetails {
@@ -106,6 +111,17 @@ label {
     "ga-email ga-email-value"
     "ga-contact ga-contact-value";
   padding: 20px;
+  margin-top: 8px;
+  margin-left: 35px;
+  margin-right: 60%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.update-form-wrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 15px;
+  margin-right: 60%;
+  margin-left: 35px;
 }
 
 .first-input {
