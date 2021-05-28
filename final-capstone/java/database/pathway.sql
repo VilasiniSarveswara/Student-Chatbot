@@ -97,9 +97,14 @@ CONSTRAINT pk_pathway_general primary key (id)
 
 INSERT INTO pathway_general (response) VALUES ('https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home')
 
+ALTER TABLE TECHNICAL_QUESTIONS 
+ADD RESPONSELINKS VARCHAR(200);
 
 
-
+INSERT INTO technical_questions (responselinks) VALUES ('https://www.interviewbit.com/java-interview-questions/');
+INSERT INTO technical_questions (responselinks) VALUES ('https://www.edureka.co/blog/interview-questions/java-interview-questions/');
+INSERT INTO technical_questions (responselinks) VALUES ('https://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-2/');
+INSERT INTO technical_questions (responselinks) VALUES ('https://www.javatpoint.com/corejava-interview-questions');
 
 
 

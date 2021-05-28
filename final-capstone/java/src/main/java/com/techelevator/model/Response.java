@@ -1,25 +1,28 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Response {
 
-    private String responseText;
-    private String responseLink;
+    private List<String> responseTextList;
+    private List<String> responseLinkList;
 
     public Response(){};
 
-    public String getResponseText() {
-        return responseText;
+    public void setResponseTextList(List<String> responseTextList) {
+        this.responseTextList = responseTextList;
+
     }
 
-    public void setResponseText(String responseText) {
-        this.responseText = responseText;
+    public List<String> getResponseTextList() {
+        return responseTextList;
     }
 
-    public String getResponseLink() {
-        return responseLink;
+    public List<String> getResponseLinkList() {
+        return responseLinkList;
     }
 
-    public void setResponseLink(String responseLink) {
-        this.responseLink = responseLink;
+    public void setResponseLinkList(List<String> responseLinkList) {
+        this.responseLinkList = responseLinkList;
     }
 }
