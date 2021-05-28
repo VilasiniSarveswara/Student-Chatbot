@@ -23,3 +23,85 @@ INSERT INTO technical_questions (response) VALUES ('Give an example of how you h
 INSERT INTO technical_questions (response) VALUES ('Explain the difference between HTML, CSS, and JavaScript');
 INSERT INTO technical_questions (response) VALUES ('What is an SPA?');
 
+
+
+CREATE TABLE behavioral_questions (
+id SERIAL,
+response VARCHAR(200),
+
+CONSTRAINT pk_behavioral_questions primary key (id)
+
+);
+
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about yourself.');
+INSERT INTO behavioral_questions (response) VALUES ('How do you handle conflicts at work?');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about your biggest failure at work.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about your biggest success at work.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time that you worked with people from another team.');
+INSERT INTO behavioral_questions (response) VALUES ('What is your learning style?');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you implemented a new technology.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you improved an existing process.');
+INSERT INTO behavioral_questions (response) VALUES ('Imagine that you and a team member have conflicting ideas over a project. How would you handle the situation?');
+INSERT INTO behavioral_questions (response) VALUES ('What is your biggest strength?');
+INSERT INTO behavioral_questions (response) VALUES ('What is your biggest weakness?');
+INSERT INTO behavioral_questions (response) VALUES ('How do you stay up to date on changes in technology?');
+INSERT INTO behavioral_questions (response) VALUES ('How do you deal with change in the workplace?');
+INSERT INTO behavioral_questions (response) VALUES ('Describe a situation in which you made an effort to repair an important relationship. What made this relationship important to you and the business?');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you had to make a decision with limited information.');
+INSERT INTO behavioral_questions (response) VALUES ('Describe the steps you took to identiy or understand a complicated problem you have had to deal with on your job.');
+INSERT INTO behavioral_questions (response) VALUES ('Imagine you are on a tight deadline. How would you handle a team member not responding in a timely manner.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you went beyond an external customers expecatations.');
+INSERT INTO behavioral_questions (response) VALUES ('How do you set goals for yourself?');
+
+
+
+
+
+
+CREATE TABLE cover_letter(
+id SERIAL,
+response VARCHAR(200),
+
+CONSTRAINT pk_cover_letter primary key (id)
+
+);
+
+INSERT INTO cover_letter (response) VALUES ('https://novoresume.com/career-blog/how-to-write-a-cover-letter-guide');
+INSERT INTO cover_letter (response) VALUES ('https://www.thebalancecareers.com/software-developer-cover-letter-example-2060144');
+INSERT INTO cover_letter (response) VALUES ('https://www.thebalancecareers.com/software-developer-cover-letter-example-2060144');
+INSERT INTO cover_letter (response) VALUES ('https://www.freecodecamp.org/news/how-to-improve-your-cover-letter/');
+INSERT INTO cover_letter (response) VALUES ('https://learnitmyway.medium.com/how-to-write-a-cover-letter-as-a-software-developer-cover-letter-and-cv-included-2190e0d23e97');
+INSERT INTO cover_letter (response) VALUES ('https://www.jobhero.com/cover-letter/examples/computer-software/software-developer/junior');
+INSERT INTO cover_letter (response) VALUES ('https://www.greatsampleresume.com/cover-letter/examples/computer-software/software-developer/junior');
+
+
+CREATE TABLE business_attire(
+id SERIAL,
+response VARCHAR(200),
+
+CONSTRAINT pk_business_attire primary key (id)
+
+);
+
+INSERT INTO business_attire (response) VALUES ('https://www.indeed.com/career-advice/starting-new-job/guide-to-business-attire');
+INSERT INTO business_attire (response) VALUES ('https://www.thebalancecareers.com/what-is-business-attire-1918075');
+INSERT INTO business_attire (response) VALUES ('https://balanceddeveloper.com/the-beginners-guide-to-the-software-engineer-dress-code');
+
+
+CREATE TABLE pathway_general (
+id SERIAL,
+response VARCHAR(200),
+
+CONSTRAINT pk_pathway_general primary key (id)
+);
+
+INSERT INTO pathway_general (response) VALUES ('https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home')
+
+
+
+
+
+
+
+
+
