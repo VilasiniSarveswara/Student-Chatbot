@@ -158,9 +158,26 @@ export default {
         });
       } else if (msg.includes("behavioral")) {
         this.topic = "behavioral";
-        AuthService.getPathwayDetails(this.topic);
+        AuthService.getPathwayDetails(this.topic).then((response) => {
+          if (response.status === 200) {
+            this.messages.push({
+              text: "Here's a sample Behavioral Interview Question: ",
+              responseText: response.data.responseText,
+              author: "bot",
+            });
+          }
+        });
       } else if (msg.includes("cover") || msg.includes("letter")) {
         this.topic = "cover";
+        AuthService.getPathwayDetails(this.topic).then((response) => {
+          if (response.status === 200) {
+            this.messages.push({
+              text: "Here's some information about Cover Letters: ",
+              responseText: response.data.responseText,
+              author: "bot",
+            });
+          }
+        });
       } else if (
         msg.includes("attire") ||
         msg.includes("dress") ||
@@ -168,6 +185,15 @@ export default {
         msg.includes("cloth")
       ) {
         this.topic = "business wear";
+        AuthService.getPathwayDetails(this.topic).then((response) => {
+          if (response.status === 200) {
+            this.messages.push({
+              text: "Here's some information about Interview Attire: ",
+              responseText: response.data.responseText,
+              author: "bot",
+            });
+          }
+        });
       }
     },
 
@@ -310,6 +336,14 @@ button:hover {
   height: 80px;
   border-radius: 4px;
   margin-top: 2.3%;
+}
+
+.message.bot {
+  float: left;
+}
+
+.message.client {
+  float: right;
 }
 </style>
 
