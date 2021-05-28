@@ -1,59 +1,68 @@
 <template>
   <div class="home">
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link v-bind:to="{ name: 'my-account' }">My Account</router-link>
-      <router-link
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token != ''"
-        >Logout</router-link
-      >
+    <div class="head-wrapper">
+      <div class="logo">
+        <img
+          src="../Images/robot-image.png"
+          alt="robot-image"
+          width="90px"
+          height="95px"
+        />
+        <h2>HALPER</h2>
+      </div>
+      <div id="nav">
+        <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+        <router-link v-bind:to="{ name: 'my-account' }">My Account</router-link>
+        <router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link
+        >
+      </div>
     </div>
 
-    <div id="heading-wrapper">
+    <div class="body-wrapper">
       <h2 id="welcome-message">
         Welcome, {{ this.$store.state.user_details.firstName }}!
       </h2>
       <h6 v-if="this.$store.state.user_details.student">Student</h6>
       <h6 v-else>Alumni</h6>
-    </div>
 
-    //<chat />
-    <button
-      id="startchat"
-      v-if="this.showStartChatBtn"
-      class="chat-assistant-button"
-      v-on:click="startChat"
-    >
-      Start Chat
-    </button>
-    <div class="chat" v-else>
-      <div class="chat-container" ref="chatbox">
-        <div>
-          <p v-for="greeting in greetings" v-bind:key="greeting.index">
-            {{ greeting }}
-          </p>
-        </div>
-        <ul class="chat-box-list">
-          <li
-            class="message"
-            v-for="(message, index) in messages"
-            :key="index"
-            :class="message.author"
-          >
-            <p>
-              <span> {{ message.text }} </span>
-            </p>
-          </li>
-        </ul>
-        <div class="chat-inputs">
-          <input
-            class="chatinputbox"
-            type="text"
-            v-model="message"
-            @keyup.enter="sendMessage"
-          />
-          <button v-on:click="sendMessage">Send</button>
+      <button
+        v-if="this.showStartChatBtn"
+        class="chat-assistant-button"
+        v-on:click="startChat"
+      >
+        START CHAT
+      </button>
+      <div class="chat" v-else>
+        <div class="chat-container" ref="chatbox">
+          <ul class="chat-box-list">
+            <li>
+              <p v-for="greeting in greetings" v-bind:key="greeting.index">
+                {{ greeting }}
+              </p>
+            </li>
+            <li
+              class="message"
+              v-for="(message, index) in messages"
+              :key="index"
+              :class="message.author"
+            >
+              <p>
+                <span> {{ message.text }} </span>
+              </p>
+            </li>
+          </ul>
+          <div class="chat-inputs">
+            <input
+              class="chatinputbox"
+              type="text"
+              v-model="message"
+              @keyup.enter="sendMessage"
+            />
+            <button v-on:click="sendMessage">Send</button>
+          </div>
         </div>
       </div>
     </div>
@@ -173,64 +182,110 @@ export default {
 </script>
 
 <style scoped>
-h6 {
-  font-size: 32px;
-  color: #caf0f8;
-  margin-top: 1%;
-  margin-left: 3%;
-  font-family: "Oswald", sans-serif;
-  letter-spacing: 2px;
+.logo {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
 }
-h2 {
-  font-size: 60px;
-  font-family: "Open Sans", sans-serif;
-  margin-bottom: 0%;
-  margin-top: 3.5%;
+
+.logo h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  color: antiquewhite;
+  margin-top: 20px;
   margin-left: 3%;
-  letter-spacing: 3px;
+}
+
+.body-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.head-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.chat-box-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  overflow: scroll;
+}
+
+.chat {
+  border: 1px solid gray;
+  width: 40vw;
+  border-radius: 4px;
+  background-color: white;
+  width: 40vw;
+  height: 60vh;
+}
+
+.chat-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-inputs input {
+  width: 100%;
+  line-height: 3;
+  border: 1px solid gray;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
 }
 
 #welcome-message {
   text-transform: capitalize;
-}
-form {
-  margin-left: 3.5%;
-  margin-top: 3%;
-}
-
-input {
-  margin-left: 0.5%;
-  margin-top: 2%;
-}
-label {
-  font-size: 22px;
-  color: #caf0f8;
-  font-family: "Oswald", sans-serif;
-  margin-top: 1%;
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
+  color: antiquewhite;
 }
 
 button {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
+  width: 180px;
+  height: 50px;
+  border: none;
+  color: antiquewhite;
+  background-color: #023e8a;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  letter-spacing: 4px;
+  border-bottom-right-radius: 8px;
+  outline: none;
+  transition: ease-out 0.8s;
 }
-.chat-container {
-  position: fixed;
-  width: 1250px;
-  height: 700px;
-  border: 1px solid black;
-  bottom: 10px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
+
+button:hover {
+  background-color: #0076b6;
 }
-.chatinputbox {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  width: 1245px;
-  height: 80px;
-  font-size: 20px;
+
+#nav > a {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  text-decoration: none;
+  color: #caf0f8;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 8px 20px 5px 20px;
+  background-color: #023e8a;
+  border-radius: 8px;
+  transition: ease-out 0.8s;
+}
+
+#nav > a:hover {
+  text-decoration: underline;
+  color: #0077b6;
+}
+#nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
 }
 </style>
 
