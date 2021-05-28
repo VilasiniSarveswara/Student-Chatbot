@@ -38,9 +38,9 @@
       <div class="chat" v-else>
         <div class="chat-container" ref="chatbox">
           <ul class="chat-box-list">
-            <li>
+            <li class="bot">
               <p v-for="greeting in greetings" v-bind:key="greeting.index">
-                {{ greeting }}
+                <span> {{ greeting }} </span>
               </p>
             </li>
             <li
@@ -51,6 +51,9 @@
             >
               <p>
                 <span> {{ message.text }} </span>
+              </p>
+              <p>
+                <span> {{ message.responseText }} </span>
               </p>
             </li>
           </ul>
@@ -147,9 +150,8 @@ export default {
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status == 200) {
             this.messages.push({
-              text:
-                "Here's something I think will be useful: " +
-                response.data.responseText,
+              text: "Here's a sample Technical Interview Question: ",
+              responseText: response.data.responseText,
               author: "bot",
             });
           }
@@ -199,7 +201,8 @@ export default {
 .body-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  height: 100vh;
 }
 
 .head-wrapper {
@@ -209,20 +212,28 @@ export default {
   width: 100%;
 }
 
+.chat {
+  border: 1px solid gray;
+  width: 60vw;
+  height: 80vh;
+  border-radius: 4px;
+  background-color: white;
+  width: 55%;
+  height: 80%;
+  margin-top: 3em;
+}
+
+.chat-container {
+  width: 100%;
+  height: 100%;
+}
+
 .chat-box-list {
   display: flex;
   flex-direction: column;
   list-style-type: none;
   overflow: scroll;
-}
-
-.chat {
-  border: 1px solid gray;
-  width: 40vw;
-  border-radius: 4px;
-  background-color: white;
-  width: 40vw;
-  height: 60vh;
+  height: 90%;
 }
 
 .chat-inputs {
@@ -230,13 +241,18 @@ export default {
   flex-direction: row;
 }
 
-.chat-inputs input {
+.chatinputbox {
   width: 100%;
-  line-height: 3;
+  height: 50px;
   border: 1px solid gray;
   border-left: none;
   border-bottom: none;
   border-right: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
 }
 
 #welcome-message {
@@ -244,6 +260,7 @@ export default {
   font-family: "Poppins", sans-serif;
   font-size: 48px;
   color: antiquewhite;
+  margin-left: 10px;
 }
 
 button {
@@ -286,6 +303,13 @@ button:hover {
   flex-direction: row;
   justify-content: space-around;
   width: 70%;
+}
+
+.chat-assistant-button {
+  width: 300px;
+  height: 80px;
+  border-radius: 4px;
+  margin-top: 2.3%;
 }
 </style>
 

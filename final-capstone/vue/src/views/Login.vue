@@ -135,4 +135,8 @@ button {
   color: #caf0f8;
   font-family: "Oswald", sans-serif;
 }
+.text-center {
+  margin-left: 3%;
+  margin-top: 5%;
+}
 </style>

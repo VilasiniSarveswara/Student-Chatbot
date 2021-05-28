@@ -91,7 +91,9 @@ label {
   font-size: 22px;
   color: #caf0f8;
   font-family: "Oswald", sans-serif;
-  margin-top: 1%;
+  padding: 10px;
+  margin: 0;
+  background-color: cadetblue;
 }
 
 .accountdetails {
@@ -104,14 +106,6 @@ label {
     "ga-email ga-email-value"
     "ga-contact ga-contact-value";
   padding: 20px;
-}
-.un,
-.fn,
-.ln,
-.email,
-.contact {
-  padding: 10px;
-  margin: 0%;
 }
 
 .first-input {
