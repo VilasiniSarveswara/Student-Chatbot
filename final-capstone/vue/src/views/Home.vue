@@ -95,18 +95,10 @@ export default {
       toBeDecidedtopic: "",
       showChatWindow: false,
       showStartChatBtn: true,
-      pathwayOptions: [
-        "Sample Technical Questions",
-        "Sample Behavioral Questions",
-        "Cover Letter Help",
-        "Interview Attire",
-      ],
       greetings: [
         "Hi, how can I help you today?",
         "Please choose from the following options:",
-        "1. Pathway ",
-        "2. Curriculum",
-        "3. Find Open Positions",
+        "Pathway, Curriculum, Find Open Positions",
       ],
     };
   },
@@ -126,12 +118,9 @@ export default {
         });
 
         this.messages.push({
-          text: "Here are some options to choose from: ",
+          text:
+            "Here are some options to choose from:   Sample Technical Questions, Sample Behavioral Questions, Cover Letter Help, Interview Attire",
           author: "bot",
-        });
-
-        this.pathwayOptions.forEach((option) => {
-          this.messages.push({ text: option, author: "bot" });
         });
       } else if (
         msg.includes("curriculum") ||
@@ -255,6 +244,7 @@ export default {
 }
 
 .chat-box-list {
+  background-color: #e9ecef;
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -274,11 +264,18 @@ export default {
   border-left: none;
   border-bottom: none;
   border-right: none;
+  border-bottom-left-radius: 4px;
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box;
+}
+
+.chatinputbox input {
+  padding-left: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
 }
 
 #welcome-message {
@@ -322,7 +319,9 @@ button:hover {
 
 #nav > a:hover {
   text-decoration: underline;
-  color: #0077b6;
+  font-size: 37px;
+  color: #03045e;
+  background-color: #ade8f4;
 }
 #nav {
   display: flex;
@@ -340,10 +339,37 @@ button:hover {
 
 .bot span {
   float: left;
+  margin: 3px;
+}
+.bot p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+}
+
+.bot {
+  background-image: linear-gradient(to bottom right, #48cae4, #0096c7);
+  width: 50%;
+  border-radius: 4px;
+  padding-bottom: 10px;
+}
+.client p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
 }
 
 .client span {
   float: right;
+}
+
+.client {
+  background-image: linear-gradient(to bottom right, #0096c7, #0077b6);
+  margin-left: 50%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  border-radius: 4px;
+  margin-right: 3px;
 }
 </style>
 
