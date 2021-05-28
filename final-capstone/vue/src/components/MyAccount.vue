@@ -77,9 +77,13 @@ input {
   margin-left: 0.5%;
   margin-top: 2%;
 }
+
+h1 {
+  color: #221717;
+}
 label {
   font-size: 22px;
-  color: antiquewhite;
+  color: #221717;
   font-family: "Oswald", sans-serif;
   margin-top: 1%;
 }
@@ -90,15 +94,11 @@ label {
 .contact {
   text-transform: capitalize;
   font-size: 22px;
-  color: antiquewhite;
+  color: #221717;
   font-family: "Oswald", sans-serif;
   padding: 10px;
   margin: 0;
   width: 200px;
-}
-
-h3 {
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .accountdetails {
@@ -112,13 +112,11 @@ h3 {
     "ga-contact ga-contact-value";
   padding: 20px;
   margin-top: 8px;
-  margin-left: 35px;
+  margin-left: 30px;
   margin-right: 60%;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .update-form-wrapper {
-  background-color: rgba(0, 0, 0, 0.5);
   padding-bottom: 15px;
   margin-right: 60%;
   margin-left: 35px;

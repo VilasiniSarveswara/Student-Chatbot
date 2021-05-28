@@ -22,12 +22,13 @@
     </div>
 
     <div class="body-wrapper">
-      <h2 id="welcome-message">
-        Welcome, {{ this.$store.state.user_details.firstName }}!
-      </h2>
-      <h6 v-if="this.$store.state.user_details.student">Student</h6>
-      <h6 v-else>Alumni</h6>
-
+      <div class="welcome-wrapper">
+        <h2 id="welcome-message">
+          Welcome, {{ this.$store.state.user_details.firstName }}!
+        </h2>
+        <h6 v-if="this.$store.state.user_details.student">Student</h6>
+        <h6 v-else>Alumni</h6>
+      </div>
       <button
         v-if="this.showStartChatBtn"
         class="chat-assistant-button"
@@ -208,7 +209,7 @@ export default {
 .logo h2 {
   font-family: "Poppins", sans-serif;
   font-size: 40px;
-  color: antiquewhite;
+  color: #343a40;
   margin-top: 20px;
   margin-left: 3%;
 }
@@ -278,12 +279,18 @@ export default {
   font-size: 16px;
 }
 
-#welcome-message {
+.welcome-wrapper {
+  display: flex;
+  flex-direction: column;
   text-transform: capitalize;
   font-family: "Poppins", sans-serif;
   font-size: 48px;
-  color: antiquewhite;
+  color: #343a40;
   margin-left: 10px;
+}
+
+.welcome-wrapper h6 {
+  margin-top: -10%;
 }
 
 button {
@@ -291,7 +298,7 @@ button {
   height: 50px;
   border: none;
   color: antiquewhite;
-  background-color: #023e8a;
+  background-color: #343a40;
   font-family: "Poppins", sans-serif;
   font-size: 25px;
   letter-spacing: 4px;
@@ -312,7 +319,7 @@ button:hover {
   margin-top: 25px;
   margin-bottom: 20px;
   padding: 8px 20px 5px 20px;
-  background-color: #023e8a;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
   transition: ease-out 0.8s;
 }
@@ -320,8 +327,8 @@ button:hover {
 #nav > a:hover {
   text-decoration: underline;
   font-size: 37px;
-  color: #03045e;
-  background-color: #ade8f4;
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
 }
 #nav {
   display: flex;
@@ -334,7 +341,7 @@ button:hover {
   width: 300px;
   height: 80px;
   border-radius: 4px;
-  margin-top: 2.3%;
+  margin-top: 4%;
 }
 
 .bot span {
@@ -347,7 +354,7 @@ button:hover {
 }
 
 .bot {
-  background-image: linear-gradient(to bottom right, #48cae4, #0096c7);
+  background-image: linear-gradient(to bottom right, #168aad, #34a0a4);
   width: 50%;
   border-radius: 4px;
   padding-bottom: 10px;
@@ -362,7 +369,7 @@ button:hover {
 }
 
 .client {
-  background-image: linear-gradient(to bottom right, #0096c7, #0077b6);
+  background-image: linear-gradient(to bottom right, #76c893, #99d98c);
   margin-left: 50%;
   margin-top: 5px;
   margin-bottom: 5px;
