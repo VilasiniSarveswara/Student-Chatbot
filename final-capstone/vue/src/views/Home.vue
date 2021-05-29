@@ -265,8 +265,124 @@ export default {
       });
 
       if (this.message.toLowerCase().includes("no")) {
-        this.NumberOfNo++;
+        if (this.topic === "behavioral") {
+          this.NumberOfNo++;
+          if (this.NumberOfYes == 0 && this.NumberOfNo == 1) {
+            this.TimesBehavioralLinksShown++;
+            if (this.TimesBehavioralLinksShown == 1) {
+              //Make a call using AuthService to fetch links from general pathway folder
+              AuthService.getPathwayDetails("general").then((response) => {
+                if (response.status == 200) {
+                  this.$store.commit(
+                    "SET_GENERAL_RESPONSE_LINK_LIST",
+                    response.data.responseLinkList
+                  );
+                }
+              });
+              /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
 
+              this.messages.push({
+                text: "Here are a few links to refer to:",
+                author: "bot",
+              });
+              for (
+                let i = 0;
+                i < this.$store.state.behavioralResponseLinkList.length;
+                i++
+              ) {
+                this.messages.push({
+                  text: this.$store.state.behavioralResponseLinkList[i],
+                  author: "bot",
+                });
+              }
+            } else if (this.TimesBehavioralLinksShown > 1) {
+              this.messages.push({
+                text: this.$store.state.generalResponseLinkList[0],
+                author: "bot",
+              }); //end of push
+            }
+            this.messages.push({
+              text: "Would you like help with other topics?",
+              author: "bot",
+            });
+            for (let i = 0; i < this.pathwayOptions.length; i++) {
+              this.messages.push();
+            }
+          } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
+            this.messages.push({
+              text: "Have a wonderful day!",
+              author: "bot",
+            });
+            this.NumberOfYes = 0;
+          } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
+            this.messages.push({
+              text: "Have a wonderful day!",
+              author: "bot",
+            });
+            this.NumberOfYes = 0;
+            this.NumberOfNo = 0;
+            this.TimesTechnicalLinksShown = 0;
+            this.TimesBehavioralLinksShown = 0;
+          }
+        } //end of if block for behavioral
+        else if (this.topic === "technical") {
+          this.NumberOfNo++;
+          if (this.NumberOfYes == 0 && this.NumberOfNo == 1) {
+            this.TimesTechnicalLinksShown++;
+            if (this.TimesTechnicalLinksShown == 1) {
+              //Make a call using AuthService to fetch links from general pathway folder
+              AuthService.getPathwayDetails("general").then((response) => {
+                if (response.status == 200) {
+                  this.$store.commit(
+                    "SET_GENERAL_RESPONSE_LINK_LIST",
+                    response.data.responseLinkList
+                  );
+                }
+              });
+              /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
+
+              this.messages.push({
+                text: "Here are a few links to refer to:",
+                author: "bot",
+              });
+              for (
+                let i = 0;
+                i < this.$store.state.technicalResponseLinkList.length;
+                i++
+              ) {
+                this.messages.push({
+                  text: this.$store.state.technicalResponseLinkList[i],
+                  author: "bot",
+                });
+              }
+            } else if (this.TimesTechnicalLinksShown > 1) {
+              this.messages.push({
+                text: this.$store.state.generalResponseLinkList[0],
+                author: "bot",
+              }); //end of push
+            }
+            this.messages.push({
+              text: "Would you like help with other topics?",
+              author: "bot",
+            });
+            for (let i = 0; i < this.pathwayOptions.length; i++) {
+              this.messages.push();
+            }
+          } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
+            this.messages.push({
+              text: "Have a wonderful day!",
+              author: "bot",
+            });
+            this.NumberOfYes = 0;
+          } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
+            this.messages.push({
+              text: "Have a wonderful day!",
+              author: "bot",
+            });
+          }
+        }
+
+        /*this.NumberOfNo++;
         if (this.NumberOfYes == 0 && this.NumberOfNo == 1) {
           this.TimesTechnicalLinksShown++;
           if (this.TimesTechnicalLinksShown == 1) {
@@ -278,10 +394,10 @@ export default {
                   response.data.responseLinkList
                 );
               }
-            });
-            /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
+            }); */
+        /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
 
-            this.messages.push({
+        /* this.messages.push({
               text: "Here are a few links to refer to:",
               author: "bot",
             });
@@ -319,7 +435,7 @@ export default {
             text: "Have a wonderful day!",
             author: "bot",
           });
-        }
+        }*/
       } //End of if block for 'no'
 
       if (
