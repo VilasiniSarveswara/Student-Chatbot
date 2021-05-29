@@ -31,7 +31,7 @@ public class PathwaySqlDAO implements PathwayDAO {
             response =fetchCoverResults();
             return response;
 
-        } else if (topic.equalsIgnoreCase("business_attire")) {
+        } else if (topic.equalsIgnoreCase("attire")) {
             response = fetchAttireResults();
                 return response;
 

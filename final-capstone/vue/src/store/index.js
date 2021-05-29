@@ -29,7 +29,7 @@ export default new Vuex.Store({
     behavioralResponseTextList: [],
     behavioralResponseLinkList: [],
     coverResponseLinkList: [],
-
+    attireResponseLinkList: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -70,6 +70,9 @@ export default new Vuex.Store({
     },
     SET_COVER_RESPONSE_LINKS(state, responseCoverLinkObject) {
       state.coverResponseLinkList = responseCoverLinkObject
+    },
+    SET__ATTIRE_RESPONSE_LINKS(state, responseAttireLinkObject) {
+      state.attireResponseLinkList = responseAttireLinkObject
     },
 
     LOGOUT(state) {

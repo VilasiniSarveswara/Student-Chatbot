@@ -263,14 +263,31 @@ export default {
         this.topic = "attire";
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status === 200) {
+            this.$store.commit('SET__ATTIRE_RESPONSE_LINKS', response.data.responseLinkList);
             this.messages.push({
-              text: "Here's some information about Interview Attire: ",
-              responseText: response.data.responseText,
+              text: "Here's some information about business attire: ",
+              author: "bot",
+            });
+
+            for (
+              let i = 0;
+              i < this.$store.state.attireResponseLinkList.length;
+              i++
+            ) {
+              this.messages.push({
+                text: this.$store.state.attireResponseLinkList[i],
+                author: "bot",
+              });
+            }
+            this.messages.push({
+              text:
+                "I hope that was helpful, do you need help on any other topics?",
               author: "bot",
             });
           }
-        });
-      }
+          })
+        }
+      
     },
 
     sendMessage() {
@@ -399,7 +416,7 @@ export default {
               author: "bot",
             });
           }
-        } else if (this.topic === "cover") {
+        } else if (this.topic === "cover" || this.topic === "attire") {
           if (this.message.toLowerCase().includes("no")) {
             this.messages.push({
               text: "Have a wonderful day!",
