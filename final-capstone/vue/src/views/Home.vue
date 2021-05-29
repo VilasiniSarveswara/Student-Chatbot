@@ -232,7 +232,6 @@ export default {
               "SET_COVER_RESPONSE_LINKS",
               response.data.responseLinkList
             );
-            console.log(this.$store.state.coverResponseLinkList[0]);
             this.messages.push({
               text: "Here's some information about cover letters: ",
               author: "bot",
@@ -247,9 +246,12 @@ export default {
                 text: this.$store.state.coverResponseLinkList[i],
                 author: "bot",
               });
-              
             }
-            this.messages.push({text: "I hope that helpful, do you need help on any other topics?", author: "bot"});
+            this.messages.push({
+              text:
+                "I hope that was helpful, do you need help on any other topics?",
+              author: "bot",
+            });
           }
         });
       } else if (
@@ -258,7 +260,7 @@ export default {
         msg.includes("business wear") ||
         msg.includes("cloth")
       ) {
-        this.topic = "business wear";
+        this.topic = "attire";
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status === 200) {
             this.messages.push({
@@ -280,17 +282,6 @@ export default {
       this.$nextTick(() => {
         this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
       });
-      if(this.topic === "cover") {
-        if(this.message.toLowerCase().includes("no")){
-          this.messages.push({title: "Have a wonderful day!", author: "bot"});
-        }
-        else if (this.message.toLowerCase().includes ("yes")) {
-          for (let i = 0; i < this.pathwayOptions.length; i++) {
-        this.messages.push({ text: this.pathwayOptions[i], author: "bot" });
-      }
-
-        }
-      }
 
       if (this.message.toLowerCase().includes("no")) {
         if (this.topic === "behavioral") {
@@ -408,70 +399,30 @@ export default {
               author: "bot",
             });
           }
-        }
-
-        /*this.NumberOfNo++;
-        if (this.NumberOfYes == 0 && this.NumberOfNo == 1) {
-          this.TimesTechnicalLinksShown++;
-          if (this.TimesTechnicalLinksShown == 1) {
-            //Make a call using AuthService to fetch links from general pathway folder
-            AuthService.getPathwayDetails("general").then((response) => {
-              if (response.status == 200) {
-                this.$store.commit(
-                  "SET_GENERAL_RESPONSE_LINK_LIST",
-                  response.data.responseLinkList
-                );
-              }
-            }); */
-        /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
-
-        /* this.messages.push({
-              text: "Here are a few links to refer to:",
+        } else if (this.topic === "cover") {
+          if (this.message.toLowerCase().includes("no")) {
+            this.messages.push({
+              text: "Have a wonderful day!",
               author: "bot",
             });
-            for (
-              let i = 0;
-              i < this.$store.state.technicalResponseLinkList.length;
-              i++
-            ) {
+          } else if (this.message.toLowerCase().includes("yes")) {
+            for (let i = 0; i < this.pathwayOptions.length; i++) {
               this.messages.push({
-                text: this.$store.state.technicalResponseLinkList[i],
+                text: this.pathwayOptions[i],
                 author: "bot",
               });
             }
-          } else if (this.TimesTechnicalLinksShown > 1) {
-            this.messages.push({
-              text: this.$store.state.generalResponseLinkList[0],
-              author: "bot",
-            }); //end of push
           }
-          this.messages.push({
-            text: "Would you like help with other topics?",
-            author: "bot",
-          });
-          for (let i = 0; i < this.pathwayOptions.length; i++) {
-            this.messages.push();
-          }
-        } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
-          this.messages.push({
-            text: "Have a wonderful day!",
-            author: "bot",
-          });
-          this.NumberOfYes = 0;
-        } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
-          this.messages.push({
-            text: "Have a wonderful day!",
-            author: "bot",
-          });
-        }*/
+        }
       } //End of if block for 'no'
 
       if (
-        this.message.toLowerCase().includes("yes") ||
-        this.message.toLowerCase().includes("yea") ||
-        this.message.toLowerCase().includes("yeah") ||
-        this.message.toLowerCase().includes("ya") ||
-        this.message.toLowerCase().includes("sure")
+        (this.message.toLowerCase().includes("yes") ||
+          this.message.toLowerCase().includes("yea") ||
+          this.message.toLowerCase().includes("yeah") ||
+          this.message.toLowerCase().includes("ya") ||
+          this.message.toLowerCase().includes("sure")) &&
+        (this.topic === "behavioral" || this.topic === "technical")
       ) {
         this.NumberOfYes++;
         if (this.NumberOfYes == 1 && this.NumberOfNo == 0) {
@@ -492,7 +443,22 @@ export default {
           this.message = "";
         } //end of else if
       } //end of if block
-      else {
+      else if (
+        (this.message.toLowerCase().includes("yes") ||
+          this.message.toLowerCase().includes("yea") ||
+          this.message.toLowerCase().includes("yeah") ||
+          this.message.toLowerCase().includes("ya") ||
+          this.message.toLowerCase().includes("sure")) &&
+        (this.topic === "cover" || this.topic === "attire")
+      ) {
+        this.message = "";
+        for (let i = 0; i < this.options.length; i++) {
+          this.messages.push({
+            text: this.options[i],
+            author: "bot",
+          });
+        }
+      } else {
         this.topicToBeDecided(this.message);
       }
     }, //end of sendMessage,
