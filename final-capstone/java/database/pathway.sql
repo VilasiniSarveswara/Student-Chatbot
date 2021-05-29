@@ -1,5 +1,3 @@
-DROP TABLE technical_questions;
-
 CREATE TABLE technical_questions (
 id SERIAL,
 response VARCHAR(200),
@@ -7,10 +5,11 @@ responselinks VARCHAR(200),
 CONSTRAINT pk_technical_questions primary key (id)
 );
 
-INSERT INTO technical_questions (response, responselinks) VALUES ('What is a class?', 'https://www.interviewbit.com/java-interview-questions/');
-INSERT INTO technical_questions (response, responselinks) VALUES ('What is an object?','https://www.edureka.co/blog/interview-questions/java-interview-questions/');
-INSERT INTO technical_questions (response, responselinks) VALUES ('What is a method?','https://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-2/');
-INSERT INTO technical_questions (response, responselinks) VALUES ('What is the difference between reference and primitive datatypes','https://www.javatpoint.com/corejava-interview-questions');
+
+INSERT INTO technical_questions (response) VALUES ('What is a class?');
+INSERT INTO technical_questions (response) VALUES ('What is an object?');
+INSERT INTO technical_questions (response) VALUES ('What is a method?');
+INSERT INTO technical_questions (response) VALUES ('What is the difference between reference and primitive datatypes');
 INSERT INTO technical_questions (response) VALUES ('Can you explain the principles of OOP?');
 INSERT INTO technical_questions (response) VALUES ('What is inheritence?');
 INSERT INTO technical_questions (response) VALUES ('Can you explain encapsulation?');
@@ -33,11 +32,12 @@ responselinks VARCHAR(200),
 CONSTRAINT pk_behavioral_questions primary key (id)
 );
 
-INSERT INTO behavioral_questions (response,responselinks) VALUES ('Tell me about yourself.','https://devskiller.com/45-behavioral-questions-to-use-during-non-technical-interview-with-developers/');
-INSERT INTO behavioral_questions (response,responselinks) VALUES ('How do you handle conflicts at work?','https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer');
-INSERT INTO behavioral_questions (response,responselinks) VALUES ('Tell me about your biggest failure at work.','https://www.thebalancecareers.com/top-behavioral-interview-questions-2059618');
-INSERT INTO behavioral_questions (response,responselinks) VALUES ('Tell me about your biggest success at work.','https://www.indeed.com/career-advice/interviewing/most-common-behavioral-interview-questions-and-answers');
-INSERT INTO behavioral_questions (response,responselinks) VALUES ('Tell me about a time that you worked with people from another team.','https://www.topechelon.com/blog/placement-process/top-behavioral-interview-questions-list-examples/');
+
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about yourself.');
+INSERT INTO behavioral_questions (response) VALUES ('How do you handle conflicts at work?');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about your biggest failure at work.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about your biggest success at work.');
+INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time that you worked with people from another team.');
 INSERT INTO behavioral_questions (response) VALUES ('What is your learning style?');
 INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you implemented a new technology.');
 INSERT INTO behavioral_questions (response) VALUES ('Tell me about a time you improved an existing process.');
@@ -91,6 +91,7 @@ INSERT INTO business_attire (response) VALUES ('https://balanceddeveloper.com/th
 CREATE TABLE pathway_general (
 id SERIAL,
 response VARCHAR(200),
+
 CONSTRAINT pk_pathway_general primary key (id)
 );
 
@@ -105,7 +106,10 @@ INSERT INTO technical_questions (responselinks) VALUES ('https://www.edureka.co/
 INSERT INTO technical_questions (responselinks) VALUES ('https://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-2/');
 INSERT INTO technical_questions (responselinks) VALUES ('https://www.javatpoint.com/corejava-interview-questions');
 
-SELECT response, responselinks FROM technical_questions;
+
+DROP TABLE technical_questions;
+DROP TABLE behavioral_questions;
+
 
 
 

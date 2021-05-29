@@ -28,6 +28,7 @@ export default new Vuex.Store({
     generalResponseLinkList: [],
     behavioralResponseTextList: [],
     behavioralResponseLinkList: [],
+    coverResponseLinkList: [],
 
   },
   mutations: {
@@ -66,6 +67,9 @@ export default new Vuex.Store({
 
     SET_BEHAVIORAL_RESPONSE_LINKS(state, responseBehavioralLinkObject) {
       state.behavioralResponseLinkList = responseBehavioralLinkObject
+    },
+    SET_COVER_RESPONSE_LINKS(state, responseCoverLinkObject) {
+      state.coverResponseLinkList = responseCoverLinkObject
     },
 
     LOGOUT(state) {
