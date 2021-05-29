@@ -228,13 +228,26 @@ export default {
         this.topic = "cover";
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status === 200) {
-            this.$store.commit('SET_COVER_RESPONSE_LINKS', response.data.responseLinkList)
-            this.messages.push({text: "Here's some information about cover letters: ", author: "bot" })
+            this.$store.commit(
+              "SET_COVER_RESPONSE_LINKS",
+              response.data.responseLinkList
+            );
+            console.log(this.$store.state.coverResponseLinkList[0]);
+            this.messages.push({
+              text: "Here's some information about cover letters: ",
+              author: "bot",
+            });
 
-            for(let i = 0; i<this.coverResponseLinkList.length; i++){
-              this.messages.push({text: "this.coverResponseLinkList[i]", author: "bot" })
+            for (
+              let i = 0;
+              i < this.$store.state.coverResponseLinkList.length;
+              i++
+            ) {
+              this.messages.push({
+                text: this.$store.state.coverResponseLinkList[i],
+                author: "bot",
+              });
             }
-           
           }
         });
       } else if (
