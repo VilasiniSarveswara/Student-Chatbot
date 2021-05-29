@@ -247,7 +247,9 @@ export default {
                 text: this.$store.state.coverResponseLinkList[i],
                 author: "bot",
               });
+              
             }
+            this.messages.push({text: "I hope that helpful, do you need help on any other topics?", author: "bot"});
           }
         });
       } else if (
@@ -278,6 +280,17 @@ export default {
       this.$nextTick(() => {
         this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
       });
+      if(this.topic === "cover") {
+        if(this.message.toLowerCase().includes("no")){
+          this.messages.push({title: "Have a wonderful day!", author: "bot"});
+        }
+        else if (this.message.toLowerCase().includes ("yes")) {
+          for (let i = 0; i < this.pathwayOptions.length; i++) {
+        this.messages.push({ text: this.pathwayOptions[i], author: "bot" });
+      }
+
+        }
+      }
 
       if (this.message.toLowerCase().includes("no")) {
         if (this.topic === "behavioral") {
