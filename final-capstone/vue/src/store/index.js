@@ -23,8 +23,11 @@ export default new Vuex.Store({
     user: currentUser || {},
     user_details: {},
     chat: {},
-    responseTextList: [],
-    responseLinkList: []
+    technicalResponseTextList: [],
+    technicalResponseLinkList: [],
+    generalResponseLinkList: [],
+    behavioralResponseTextList: [],
+    behavioralResponseLinkList: [],
 
   },
   mutations: {
@@ -45,8 +48,24 @@ export default new Vuex.Store({
 
     },
 
-    SET_RESPONSE_TEXT(state, responseTextObject) {
-      state.responseTextList = responseTextObject
+    SET_TECHNICAL_RESPONSE_TEXT(state, responseTechnicalTextObject) {
+      state.technicalResponseTextList = responseTechnicalTextObject
+    },
+
+    SET_TECHNICAL_RESPONSE_LINKS(state, responseTechnicalLinkObject) {
+      state.technicalResponseLinkList = responseTechnicalLinkObject
+    },
+
+    SET_GENERAL_RESPONSE_LINK_LIST(state, generalLinkObject) {
+      state.generalResponseLinkList = generalLinkObject
+    },
+
+    SET_BEHAVIORAL_RESPONSE_TEXT(state, responseBehavioralTextObject) {
+      state.behavioralResponseTextList = responseBehavioralTextObject
+    },
+
+    SET_BEHAVIORAL_RESPONSE_LINKS(state, responseBehavioralLinkObject) {
+      state.behavioralResponseLinkList = responseBehavioralLinkObject
     },
 
     LOGOUT(state) {

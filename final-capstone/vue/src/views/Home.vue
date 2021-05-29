@@ -37,10 +37,15 @@
         START CHAT
       </button>
       <div class="chat" v-else>
-        <div class="chat-container" ref="chatbox">
-          <ul class="chat-box-list">
+        <div class="chat-container">
+          <ul class="chat-box-list" ref="chatbox">
             <li class="bot">
-              <span>{{ this.greeting }}</span> <br />
+              <span
+                >{{ this.greeting1 }}
+                {{ this.$store.state.user_details.firstName }},
+                {{ this.greeting2 }}
+              </span>
+              <br />
               <p v-for="option in options" v-bind:key="option.index">
                 <span> {{ option }} </span> <br />
               </p>
@@ -91,8 +96,20 @@ export default {
 
   data() {
     return {
+      pathwayOptions: [
+        " Here are some options to choose from:",
+        " * Sample Technical Questions",
+        " * Sample Behavioral Questions",
+        " * Cover Letter Help",
+        " * Interview Attire",
+      ],
+      TimesTechnicalLinksShown: 0,
+      TimesBehavioralLinksShown: 0,
       NumberOfYes: 0,
-      pathwayCounter: 0,
+      NumberOfNo: 0,
+      // pathwayCounter: 0,
+      technicalCounter: 0,
+      behavioralCounter: 0,
       currentIndex: 0,
       topic: "",
       message: "",
@@ -102,19 +119,33 @@ export default {
       showStartChatBtn: true,
       options: [
         "Please choose from the following options:",
-        "Pathway",
-        "Curriculum",
-        "Find Open Positions",
+        " * Pathway",
+        " * Curriculum",
+        " * Find Open Positions",
       ],
-      greeting: "Hi, how can I help you today?",
+      greeting1: "Hi ",
+      greeting2: "how can I help you today?",
     };
   },
   methods: {
+    pathwayRoute() {
+      this.topic = "pathway";
+      this.messages.push({
+        text: "Sure, what are you looking for in " + this.topic + "?",
+        author: "bot",
+      });
+      for (let i = 0; i < this.pathwayOptions.length; i++) {
+        this.messages.push({ text: this.pathwayOptions[i], author: "bot" });
+      }
+    },
+
     printTechnicalResponses() {
       this.currentIndex = Math.floor(Math.random() * 17);
       this.messages.push({
         text: "Here's a sample Technical Interview Question: ",
-        responseText: this.$store.state.responseTextList[this.currentIndex],
+        responseText: this.$store.state.technicalResponseTextList[
+          this.currentIndex
+        ],
         author: "bot",
       });
       this.messages.push({
@@ -122,6 +153,21 @@ export default {
         author: "bot",
       });
     },
+    printBehavioralResponses() {
+      this.currentIndex = Math.floor(Math.random() * 19);
+      this.messages.push({
+        text: "Here's a sample Behavioral Interview Question: ",
+        responseText: this.$store.state.behavioralResponseTextList[
+          this.currentIndex
+        ],
+        author: "bot",
+      });
+      this.messages.push({
+        text: "Was that helpful?",
+        author: "bot",
+      });
+    },
+
     startChat() {
       this.showChatWindow = true;
       this.showStartChatBtn = false;
@@ -131,18 +177,7 @@ export default {
       var msg = message.toLowerCase();
       this.message = "";
       if (msg.includes("pathway") || msg.includes("pathways")) {
-        this.topic = "pathway";
-        this.pathwayCounter++;
-        this.messages.push({
-          text: "Sure, what are you looking for in " + this.topic + "?",
-          author: "bot",
-        });
-
-        this.messages.push({
-          text:
-            "Here are some options to choose from:   Sample Technical Questions, Sample Behavioral Questions, Cover Letter Help, Interview Attire",
-          author: "bot",
-        });
+        this.pathwayRoute();
       } else if (
         msg.includes("curriculum") ||
         msg.includes("class") ||
@@ -157,13 +192,16 @@ export default {
         this.topic = "job";
       } else if (msg.includes("technical")) {
         this.topic = "technical";
-
-        if (this.pathwayCounter == 1) {
+        if (this.technicalCounter == 0) {
           AuthService.getPathwayDetails(this.topic).then((response) => {
             if (response.status == 200) {
               this.$store.commit(
-                "SET_RESPONSE_TEXT",
+                "SET_TECHNICAL_RESPONSE_TEXT",
                 response.data.responseTextList
+              );
+              this.$store.commit(
+                "SET_TECHNICAL_RESPONSE_LINKS",
+                response.data.responseLinkList
               );
             }
           });
@@ -171,15 +209,21 @@ export default {
         this.printTechnicalResponses();
       } else if (msg.includes("behavioral")) {
         this.topic = "behavioral";
-        AuthService.getPathwayDetails(this.topic).then((response) => {
-          if (response.status === 200) {
-            this.messages.push({
-              text: "Here's a sample Behavioral Interview Question: ",
-              responseText: response.data.responseText,
-              author: "bot",
-            });
-          }
-        });
+        if (this.behavioralCounter == 0) {
+          AuthService.getPathwayDetails(this.topic).then((response) => {
+            if (response.status === 200) {
+              this.$store.commit(
+                "SET_BEHAVIORAL_RESPONSE_TEXT",
+                response.data.responseTextList
+              );
+              this.$store.commit(
+                "SET_BEHAVIORAL_RESPONSE_LINKS",
+                response.data.responseLinkList
+              );
+            }
+          });
+        }
+        this.printBehavioralResponses();
       } else if (msg.includes("cover") || msg.includes("letter")) {
         this.topic = "cover";
         AuthService.getPathwayDetails(this.topic).then((response) => {
@@ -215,6 +259,69 @@ export default {
         text: this.message,
         author: "client",
       });
+
+      this.$nextTick(() => {
+        this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
+      });
+
+      if (this.message.toLowerCase().includes("no")) {
+        this.NumberOfNo++;
+
+        if (this.NumberOfYes == 0 && this.NumberOfNo == 1) {
+          this.TimesTechnicalLinksShown++;
+          if (this.TimesTechnicalLinksShown == 1) {
+            //Make a call using AuthService to fetch links from general pathway folder
+            AuthService.getPathwayDetails("general").then((response) => {
+              if (response.status == 200) {
+                this.$store.commit(
+                  "SET_GENERAL_RESPONSE_LINK_LIST",
+                  response.data.responseLinkList
+                );
+              }
+            });
+            /* Above step is done so that we can avoid waiting when we have to show the general pathway link*/
+
+            this.messages.push({
+              text: "Here are a few links to refer to:",
+              author: "bot",
+            });
+            for (
+              let i = 0;
+              i < this.$store.state.technicalResponseLinkList.length;
+              i++
+            ) {
+              this.messages.push({
+                text: this.$store.state.technicalResponseLinkList[i],
+                author: "bot",
+              });
+            }
+          } else if (this.TimesTechnicalLinksShown > 1) {
+            this.messages.push({
+              text: this.$store.state.generalResponseLinkList[0],
+              author: "bot",
+            }); //end of push
+          }
+          this.messages.push({
+            text: "Would you like help with other topics?",
+            author: "bot",
+          });
+          for (let i = 0; i < this.pathwayOptions.length; i++) {
+            this.messages.push();
+          }
+        } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
+          this.messages.push({
+            text: "Have a wonderful day!",
+            author: "bot",
+          });
+          this.NumberOfYes = 0;
+        } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
+          this.messages.push({
+            text: "Have a wonderful day!",
+            author: "bot",
+          });
+        }
+      } //End of if block for 'no'
+
       if (
         this.message.toLowerCase().includes("yes") ||
         this.message.toLowerCase().includes("yea") ||
@@ -223,16 +330,20 @@ export default {
         this.message.toLowerCase().includes("sure")
       ) {
         this.NumberOfYes++;
-        if (this.NumberOfYes == 1) {
+        if (this.NumberOfYes == 1 && this.NumberOfNo == 0) {
           this.messages.push({
             text: "Cool, anything else I can help you with today?",
             author: "bot",
           });
           this.message = "";
-        } else if (this.NumberOfYes == 2) {
+        } else if (
+          this.NumberOfYes == 2 ||
+          (this.NumberOfYes == 1 && this.NumberOfNo == 1)
+        ) {
           for (let i = 0; i < this.options.length; i++) {
             this.messages.push({ text: this.options[i], author: "bot" });
             this.NumberOfYes = 0;
+            this.NumberOfNo = 0;
           }
           this.message = "";
         } //end of else if
@@ -280,7 +391,7 @@ export default {
   height: 80vh;
   border-radius: 4px;
   background-color: white;
-  width: 55%;
+  width: 70%;
   height: 80%;
   margin-top: 3em;
 }
