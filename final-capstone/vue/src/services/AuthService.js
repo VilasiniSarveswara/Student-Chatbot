@@ -15,5 +15,16 @@ export default {
 
   getPathwayDetails(topic) {
     return axios.get(`/pathway/${topic}`)
+  },
+
+  updateUserAccountDetails(user) {
+    return axios.put('/updateUserDetails', user)
+  },
+
+  getQuotes() {
+    return axios.get('/getQuotes')
+  },
+  getWeather(zipCode) {
+    return axios.get(`/weather/${zipCode}`)
   }
 }

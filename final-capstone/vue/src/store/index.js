@@ -29,7 +29,9 @@ export default new Vuex.Store({
     behavioralResponseTextList: [],
     behavioralResponseLinkList: [],
     coverResponseLinkList: [],
-    attireResponseLinkList: []
+    attireResponseLinkList: [],
+    quotes: [],
+    weather: {},
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -73,6 +75,14 @@ export default new Vuex.Store({
     },
     SET__ATTIRE_RESPONSE_LINKS(state, responseAttireLinkObject) {
       state.attireResponseLinkList = responseAttireLinkObject
+    },
+
+    SET_QUOTES(state, quotes) {
+      state.quotes = quotes
+    },
+
+    SET_WEATHER(state, weather) {
+      state.weather = weather
     },
 
     LOGOUT(state) {

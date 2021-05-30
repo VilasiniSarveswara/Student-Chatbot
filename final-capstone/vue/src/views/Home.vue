@@ -28,6 +28,19 @@
         </h2>
         <h6 v-if="this.$store.state.user_details.student">Student</h6>
         <h6 v-else>Alumni</h6>
+        <br />
+
+        <div class="quotes">{{ this.$store.state.quotes[0].quote }}</div>
+        <div class="weather">
+          {{ this.$store.state.weather.nameOfLocation }},
+          {{ this.$store.state.weather.stateLocated }}
+        </div>
+        <div class="weather">
+          {{ this.localDate }}
+        </div>
+        <div class="weather">
+          {{ this.$store.state.weather.currentTemperature }} deg F
+        </div>
       </div>
       <button
         v-if="this.showStartChatBtn"
@@ -76,8 +89,6 @@
         </div>
       </div>
     </div>
-
-    <chat />
   </div>
 </template>
  <!-- in Styling, float left and float right will have the messages displaying on either side, and using the dynamic class 
@@ -87,15 +98,15 @@
   setting an overflow: scroll will keep the chatbox from distorting when there are more messages than the window can contain-->
 
 <script>
-import Chat from "../components/Chat.vue";
 import AuthService from "../services/AuthService.js";
 
 export default {
   name: "home",
-  components: Chat,
 
   data() {
     return {
+      date: {},
+      localDate: {},
       pathwayOptions: [
         " Here are some options to choose from:",
         " * Sample Technical Questions",
@@ -126,6 +137,21 @@ export default {
       greeting1: "Hi ",
       greeting2: "how can I help you today?",
     };
+  },
+
+  created() {
+    AuthService.getQuotes().then((response) => {
+      for (let i = 0; i < 5; i++) {
+        this.$store.commit("SET_QUOTES", response.data);
+      }
+    });
+    AuthService.getWeather(76524).then((response) => {
+      this.$store.commit("SET_WEATHER", response.data);
+    });
+
+    this.date = new Date(this.$store.state.weather.localDateAndTime);
+    this.localDate =
+      this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
   },
   methods: {
     pathwayRoute() {
