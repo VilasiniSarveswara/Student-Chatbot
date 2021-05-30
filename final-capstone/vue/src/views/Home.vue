@@ -71,7 +71,7 @@
               v-model="message"
               @keyup.enter="sendMessage"
             />
-            <button v-on:click="sendMessage">Send</button>
+            <button class="sendBtn" v-on:click="sendMessage">Send</button>
           </div>
         </div>
       </div>
@@ -297,6 +297,10 @@ export default {
         text: this.message,
         author: "client",
       });
+
+      /* this.$nextTick(() => {
+        this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
+      });*/
 
       this.$nextTick(() => {
         this.$refs.chatbox.scrollTop = this.$refs.chatbox.scrollHeight;
@@ -553,7 +557,7 @@ export default {
   border-right: none;
   border-bottom-left-radius: 4px;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 .chatinputbox > input {
@@ -621,8 +625,15 @@ button:hover {
 .chat-assistant-button {
   width: 300px;
   height: 80px;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-top: 4%;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  font-size: 37px;
+
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
 }
 
 .bot span {

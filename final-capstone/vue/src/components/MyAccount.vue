@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div id="nav" class="head-wrapper">
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link
+        v-bind:to="{ name: 'logout' }"
+        v-if="$store.state.token != ''"
+        >Logout</router-link
+      >
+    </div>
     <h1>My Account</h1>
     <div class="accountdetails">
       <label class="un" for="username" id="first-input">Username:</label>
@@ -24,10 +32,13 @@
       <h3 id="contactnumber" class="contact">
         {{ this.$store.state.user_details.contactNumber }}
       </h3>
+      <a href="#" v-on:click="showForm = true" v-if="showForm === false"
+        >Show Update Form</a
+      >
     </div>
 
     <div class="update-form-wrapper">
-      <form class="update">
+      <form class="update" v-on:submit.prevent="" v-if="showForm === true">
         <label for="username" id="first-input">Username</label>
         <input type="text" v-model="this.$store.state.user.username" /> <br />
         <label for="firstname">Firstname</label>
@@ -63,6 +74,11 @@ export default {
   name: "my-account",
   user: {
     username: "",
+  },
+  data() {
+    return {
+      showForm: false,
+    };
   },
 };
 </script>
@@ -155,5 +171,56 @@ label {
 }
 .contact {
   grid-area: ga-contact;
+}
+#nav > a {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  text-decoration: none;
+  color: #caf0f8;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 8px 20px 5px 20px;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
+  border-radius: 8px;
+  transition: ease-out 0.8s;
+}
+
+#nav > a:hover {
+  text-decoration: underline;
+  font-size: 37px;
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
+}
+#nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
+}
+.head-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+a {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  text-decoration: none;
+  color: #caf0f8;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 8px 20px 5px 20px;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
+  border-radius: 8px;
+  transition: ease-out 0.8s;
+  width: 360px;
+  height: 60px;
+}
+a:hover {
+  text-decoration: underline;
+  font-size: 37px;
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
 }
 </style>
