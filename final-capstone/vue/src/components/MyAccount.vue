@@ -22,9 +22,7 @@
     <h1>My Account</h1>
     <div class="accountdetails">
       <label class="un" for="username" id="first-input">Username:</label>
-      <label id="username" class="un">{{
-        this.$store.state.user.username
-      }}</label>
+      <h3 id="username" class="un">{{ this.$store.state.user.username }}</h3>
 
       <label for="firstname" class="fn">Firstname:</label>
       <h3 id="firstname" class="fn">
@@ -52,29 +50,50 @@
       >
     </div>
 
-    <div class="update-form-wrapper">
-      <form class="update" v-on:submit.prevent="" v-if="showForm === true">
-        <label for="username" id="first-input">Username</label>
-        <input type="text" v-model="this.$store.state.user.username" /> <br />
-        <label for="firstname">Firstname</label>
-        <input type="text" v-model="this.$store.state.user_details.firstName" />
-        <br />
-        <label for="lastname">Lastame</label>
-
-        <input type="text" v-model="this.$store.state.user_details.lastName" />
-        <br />
-        <label for="emailId">Email Id</label>
-        <input type="text" v-model="this.$store.state.user_details.emailId" />
-        <br />
-        <label for="contactnumber">Contact Number</label>
+    <div class="update-form-wrapper" v-if="showForm === true">
+      <form class="update" v-on:submit.prevent="">
+        <label for="username" id="first-input">Username:</label>
         <input
           type="text"
+          class="input-user"
+          v-model="this.$store.state.user.username"
+        />
+        <br />
+        <label for="firstname" id="form-firstname">Firstname:</label>
+        <input
+          type="text"
+          class="input-firstname"
+          v-model="this.$store.state.user_details.firstName"
+        />
+        <br />
+        <label for="lastname" id="form-lastname">Lastame:</label>
+
+        <input
+          type="text"
+          class="input-lastname"
+          v-model="this.$store.state.user_details.lastName"
+        />
+        <br />
+        <label for="emailId" id="form-email">Email Id:</label>
+        <input
+          type="text"
+          class="input-email"
+          v-model="this.$store.state.user_details.emailId"
+        />
+        <br />
+        <label for="contactnumber" id="form-number">Contact Number:</label>
+        <input
+          type="text"
+          class="input-number"
           v-model="this.$store.state.user_details.contactNumber"
         />
         <br />
-        <label for="checkbox">Student (leave unchecked if alumni)</label>
+        <label for="checkbox" id="form-student"
+          >Student (leave unchecked if alumni)</label
+        >
         <input
           type="checkbox"
+          class="input-student"
           v-model="this.$store.state.user_details.isStudent"
         />
 
@@ -106,28 +125,6 @@ export default {
   width: 100%;
 }
 
-#nav > a {
-  font-family: "Poppins", sans-serif;
-  font-size: 35px;
-  text-decoration: none;
-  color: #caf0f8;
-  margin-top: 25px;
-  margin-bottom: 20px;
-  margin-left: 4%;
-  margin-right: 4%;
-  text-align: center;
-
-  padding: 8px 20px 5px 20px;
-  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
-  border-radius: 8px;
-  transition: ease-out 0.8s;
-}
-
-#nav > a:hover {
-  color: #343a40;
-  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
-}
-
 .nav-wrapper {
   display: flex;
   flex-direction: row;
@@ -151,12 +148,6 @@ export default {
 
 form {
   margin-left: 3.5%;
-  margin-top: 3%;
-}
-
-input {
-  margin-left: 0.5%;
-  margin-top: 2%;
 }
 
 h1 {
@@ -166,7 +157,6 @@ label {
   font-size: 22px;
   color: #221717;
   font-family: "Oswald", sans-serif;
-  margin-top: 1%;
 }
 .un,
 .fn,
@@ -182,6 +172,41 @@ label {
   width: 200px;
 }
 
+.update input {
+  background-color: #f8f9fa;
+  width: 200px;
+  height: 20px;
+  padding-left: 5px;
+}
+
+.input-firstname,
+.input-lastname,
+.input-email,
+.input-number {
+  float: right;
+  margin-top: 21px;
+  margin-right: 80px;
+}
+.input-user {
+  float: right;
+  margin-top: 5px;
+  margin-right: 80px;
+}
+
+#form-firstname,
+#form-lastname,
+#form-email,
+#form-number,
+#form-student {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.input-student {
+  margin-left: -75px;
+  margin-top: 5px;
+}
+
 .accountdetails {
   display: grid;
   grid-template-columns: 1fr 8fr;
@@ -195,12 +220,16 @@ label {
   margin-top: 8px;
   margin-left: 30px;
   margin-right: 60%;
+  background-color: rgba(201, 76, 76, 0.3);
+  width: 500px;
 }
 
 .update-form-wrapper {
   padding-bottom: 15px;
   margin-right: 60%;
   margin-left: 35px;
+  background-color: rgba(201, 76, 76, 0.3);
+  width: 535px;
 }
 
 .first-input {
@@ -233,6 +262,7 @@ label {
 }
 #contactnumber {
   grid-area: ga-contact-value;
+  letter-spacing: 1.2px;
 }
 .contact {
   grid-area: ga-contact;
@@ -248,8 +278,9 @@ label {
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
   transition: ease-out 0.8s;
-  width: 360px;
+  width: 260px;
   height: 60px;
+  text-align: center;
 }
 
 #nav > a:hover {
@@ -263,12 +294,6 @@ label {
   flex-direction: row;
   justify-content: space-around;
   width: 70%;
-}
-.nav-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
 }
 
 .show-form {
@@ -284,8 +309,27 @@ label {
   transition: ease-out 0.8s;
 }
 
-.show-form a:hover {
+.show-form:hover {
   background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
   color: #343a40;
+}
+
+button {
+  text-align: center;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  color: #caf0f8;
+  text-decoration: none;
+  transition: ease-out 0.8s;
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+button:hover {
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
 }
 </style>

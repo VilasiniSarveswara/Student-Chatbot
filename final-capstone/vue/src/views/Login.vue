@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -94,6 +94,11 @@ export default {
 form {
   margin-left: 3.5%;
   margin-top: 3%;
+  background-color: rgba(201, 76, 76, 0.3);
+  padding-left: 30px;
+  margin-right: 69.3%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 h1 {
   margin: 0;
@@ -103,8 +108,9 @@ label {
   font-size: 22px;
   color: #caf0f8;
   font-family: "Oswald", sans-serif;
-  margin-top: 1%;
+  margin-right: 20px;
 }
+
 input {
   margin-left: 0.5%;
   margin-top: 2%;
@@ -120,14 +126,21 @@ a {
   font-size: 22px;
   font-family: "Oswald", sans-serif;
   color: #caf0f8;
+  background-color: #0e3a8d;
+  transition: ease-in-out 0.8s;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 a:hover {
   color: #48cae4;
+  background-color: #0076b6;
 }
 button {
   margin-top: 2%;
   font-family: "Oswald", sans-serif;
   font-size: 18px;
+  margin-top: 20px;
 }
 
 .alert {
