@@ -593,7 +593,7 @@ button {
   letter-spacing: 4px;
   border-bottom-right-radius: 8px;
   outline: none;
-  transition: ease-out 0.8s;
+  transition: ease-in-out 0.8s;
 }
 
 button:hover {
