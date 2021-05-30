@@ -638,9 +638,14 @@ button:hover {
 
 .bot {
   background-image: linear-gradient(to bottom right, #168aad, #34a0a4);
-  width: 50%;
+  width: 80%;
   border-radius: 4px;
   padding-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
 }
 .client p {
   font-family: "Open Sans", sans-serif;
@@ -653,13 +658,16 @@ button:hover {
 
 .client {
   background-image: linear-gradient(to bottom right, #76c893, #99d98c);
-  margin-left: 50%;
+  margin-left: 30%;
   margin-top: 5px;
   margin-bottom: 5px;
   padding-bottom: 10px;
   padding-right: 20px;
   border-radius: 4px;
   margin-right: 3px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
 }
 </style>
 
