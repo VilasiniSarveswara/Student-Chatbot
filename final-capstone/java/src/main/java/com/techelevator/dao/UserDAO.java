@@ -20,10 +20,8 @@ public interface UserDAO {
 
    RegisterUserDTO findUserByUsername(String username);
 
-
     // updating existing user details
     // object received will have a valid username
-
     void updateUserDetails(RegisterUserDTO registeredUser);
 
 }

@@ -18,13 +18,9 @@ public class ChatbotController {
 
     @RequestMapping(path = "/pathway/{topic}", method = RequestMethod.GET)
     public Response getPathwayInfoGivenTopic(@PathVariable String topic){
-
-
         Response response = pathwayDAO.getPathwayDetails(topic);
-
         return response;
 
     }
-
 
 }
