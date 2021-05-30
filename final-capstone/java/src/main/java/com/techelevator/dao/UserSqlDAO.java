@@ -105,51 +105,31 @@ public class UserSqlDAO implements UserDAO {
 
     @Override
     public RegisterUserDTO findUserByUsername(String username) {
-
+        RegisterUserDTO registeredUser = new RegisterUserDTO();
         int id = findIdByUsername(username);
-
         String sql = "SELECT * FROM userdetails WHERE user_id = ?";
-
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-
-
         if (results.next()){
-
             String firstName = results.getString("firstname");
             String lastName = results.getString("lastname");
             String email = results.getString("emailid");
             long phoneNumber = results.getLong("contactnumber");
             boolean isStudent = results.getBoolean("isstudent");
-
-            RegisterUserDTO registeredUser = new RegisterUserDTO(firstName, lastName, email, phoneNumber, isStudent);
-
-            return registeredUser;
-
-
-        }else {
-
-            return null;
+            registeredUser = new RegisterUserDTO(firstName, lastName, email, phoneNumber, isStudent);
         }
+        return registeredUser;
     }
 
     @Override
     public void updateUserDetails(RegisterUserDTO registeredUser) {
-
         String username = registeredUser.getUsername();
         String lastName = registeredUser.getLastName();
         String emailId = registeredUser.getEmailId();
         long contactNumber = registeredUser.getContactNumber();
         boolean isStudent = registeredUser.isStudent();
-
         int id = findIdByUsername(username);
-
         String sql = "UPDATE userdetails SET lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; ";
-
         jdbcTemplate.update(sql, lastName, emailId, contactNumber, isStudent, id);
-
-
-
-
     }
 
 

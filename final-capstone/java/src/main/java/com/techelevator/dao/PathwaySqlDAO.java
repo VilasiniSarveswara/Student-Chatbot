@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.Response;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -123,6 +124,7 @@ public class PathwaySqlDAO implements PathwayDAO {
         coverResponse.setResponseLinkList(responseLinkList);
         return coverResponse;
     }
+
 
 
     // helper method
