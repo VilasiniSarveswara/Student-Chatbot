@@ -34,7 +34,7 @@
         class="chat-assistant-button"
         v-on:click="startChat"
       >
-        START CHAT
+        Start Chat
       </button>
       <div class="chat" v-else>
         <div class="chat-container">
@@ -507,7 +507,7 @@ export default {
 .body-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100vh;
 }
 
@@ -541,6 +541,8 @@ export default {
   list-style-type: none;
   overflow: scroll;
   height: 90%;
+  padding-left: 5px;
+  padding-right: 3px;
 }
 
 .chat-inputs {
@@ -557,7 +559,9 @@ export default {
   border-right: none;
   border-bottom-left-radius: 4px;
   margin: 0;
-  padding: 10px;
+  padding-left: 15px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .chatinputbox > input {
@@ -603,6 +607,10 @@ button:hover {
   color: #caf0f8;
   margin-top: 25px;
   margin-bottom: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+  text-align: center;
+
   padding: 8px 20px 5px 20px;
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
@@ -610,15 +618,13 @@ button:hover {
 }
 
 #nav > a:hover {
-  text-decoration: underline;
-  font-size: 37px;
   color: #343a40;
   background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
 }
 #nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 70%;
 }
 
@@ -631,7 +637,12 @@ button:hover {
   right: 10px;
   bottom: 10px;
   font-size: 37px;
+  color: antiquewhite;
+  background-color: #0e3a8d;
+  transition: ease-out 0.8s;
+}
 
+.chat-assistant-botton :hover {
   color: #343a40;
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
 }
@@ -650,8 +661,9 @@ button:hover {
 .bot {
   background-image: linear-gradient(to bottom right, #168aad, #34a0a4);
   width: 80%;
-  border-radius: 4px;
+  border-radius: 10px 10px 10px 1px;
   padding-bottom: 10px;
+  padding-left: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
   overflow-wrap: break-word;
@@ -674,12 +686,12 @@ button:hover {
   margin-bottom: 5px;
   padding-bottom: 10px;
   padding-right: 20px;
-  border-radius: 4px;
   margin-right: 3px;
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;
   padding-left: 5px;
+  border-radius: 10px 10px 1px 10px;
 }
 </style>
 

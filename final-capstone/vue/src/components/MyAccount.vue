@@ -1,12 +1,23 @@
 <template>
   <div>
-    <div id="nav" class="head-wrapper">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token != ''"
-        >Logout</router-link
-      >
+    <div class="head-wrapper">
+      <div class="logo">
+        <img
+          src="../Images/robot-image.png"
+          alt="robot-image"
+          width="90px"
+          height="95px"
+        />
+        <h2>HALPER</h2>
+      </div>
+      <div id="nav" class="nav-wrapper">
+        <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+        <router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link
+        >
+      </div>
     </div>
     <h1>My Account</h1>
     <div class="accountdetails">
@@ -32,7 +43,11 @@
       <h3 id="contactnumber" class="contact">
         {{ this.$store.state.user_details.contactNumber }}
       </h3>
-      <a href="#" v-on:click="showForm = true" v-if="showForm === false"
+      <a
+        class="show-form"
+        href="#"
+        v-on:click="showForm = true"
+        v-if="showForm === false"
         >Show Update Form</a
       >
     </div>
@@ -84,6 +99,56 @@ export default {
 </script>
 
 <style>
+.head-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#nav > a {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  text-decoration: none;
+  color: #caf0f8;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  margin-left: 4%;
+  margin-right: 4%;
+  text-align: center;
+
+  padding: 8px 20px 5px 20px;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
+  border-radius: 8px;
+  transition: ease-out 0.8s;
+}
+
+#nav > a:hover {
+  color: #343a40;
+  background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
+}
+
+.nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+}
+
+.logo h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  color: #343a40;
+  margin-top: 20px;
+  margin-left: 3%;
+}
+
 form {
   margin-left: 3.5%;
   margin-top: 3%;
@@ -183,6 +248,8 @@ label {
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
   transition: ease-out 0.8s;
+  width: 360px;
+  height: 60px;
 }
 
 #nav > a:hover {
@@ -197,30 +264,28 @@ label {
   justify-content: space-around;
   width: 70%;
 }
-.head-wrapper {
+.nav-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
 }
-a {
+
+.show-form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   font-family: "Poppins", sans-serif;
-  font-size: 35px;
+  font-size: 20px;
   text-decoration: none;
   color: #caf0f8;
-  margin-top: 25px;
-  margin-bottom: 20px;
-  padding: 8px 20px 5px 20px;
-  background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
-  border-radius: 8px;
+  text-decoration: none;
   transition: ease-out 0.8s;
-  width: 360px;
-  height: 60px;
 }
-a:hover {
-  text-decoration: underline;
-  font-size: 37px;
-  color: #343a40;
+
+.show-form a:hover {
   background-image: linear-gradient(to bottom left, #34a0a4, #52b69a);
+  color: #343a40;
 }
 </style>
