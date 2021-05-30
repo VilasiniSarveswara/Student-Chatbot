@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -15,6 +15,7 @@
         required
         autofocus
       />
+      <br />
 
       <label for="first-name">First Name</label>
       <input
@@ -24,6 +25,7 @@
         v-model="user.firstName"
         required
       />
+      <br />
 
       <label for="last-name">Last Name</label>
       <input
@@ -33,6 +35,7 @@
         v-model="user.lastName"
         required
       />
+      <br />
 
       <label for="emailId">Email</label>
       <input
@@ -42,6 +45,7 @@
         v-model="user.emailId"
         required
       />
+      <br />
 
       <label for="contact-number">Phone Number</label>
       <input
@@ -72,6 +76,7 @@
         v-model="user.password"
         required
       />
+      <br />
       <input
         type="password"
         id="confirmPassword"
@@ -143,4 +148,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+form {
+  margin-left: 3.5%;
+}
+
+input {
+  background-color: #f8f9fa;
+  width: 200px;
+  height: 20px;
+  padding-left: 5px;
+}
+</style>

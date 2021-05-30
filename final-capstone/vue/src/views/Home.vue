@@ -573,13 +573,18 @@ export default {
   flex-direction: column;
   text-transform: capitalize;
   font-family: "Poppins", sans-serif;
-  font-size: 48px;
-  color: #343a40;
   margin-left: 10px;
 }
 
+.welcome-wrapper h2 {
+  font-size: 48px;
+  color: #343a40;
+}
+
 .welcome-wrapper h6 {
+  font-size: 25px;
   margin-top: -10%;
+  color: #343a40;
 }
 
 button {
