@@ -668,6 +668,7 @@ button:hover {
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;
+  padding-left: 5px;
 }
 </style>
 
