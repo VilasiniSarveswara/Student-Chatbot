@@ -263,7 +263,10 @@ export default {
         this.topic = "attire";
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status === 200) {
-            this.$store.commit('SET__ATTIRE_RESPONSE_LINKS', response.data.responseLinkList);
+            this.$store.commit(
+              "SET__ATTIRE_RESPONSE_LINKS",
+              response.data.responseLinkList
+            );
             this.messages.push({
               text: "Here's some information about business attire: ",
               author: "bot",
@@ -285,9 +288,8 @@ export default {
               author: "bot",
             });
           }
-          })
-        }
-      
+        });
+      }
     },
 
     sendMessage() {
@@ -552,15 +554,10 @@ export default {
   border-bottom-left-radius: 4px;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box;
 }
 
-.chatinputbox input {
+.chatinputbox > input {
   padding-left: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
 }
 
 .welcome-wrapper {
@@ -582,7 +579,7 @@ button {
   height: 50px;
   border: none;
   color: antiquewhite;
-  background-color: #343a40;
+  background-color: #0e3a8d;
   font-family: "Poppins", sans-serif;
   font-size: 25px;
   letter-spacing: 4px;
