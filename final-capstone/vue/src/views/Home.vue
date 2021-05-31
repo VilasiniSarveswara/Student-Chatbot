@@ -60,7 +60,12 @@
               </span>
               <br />
               <p v-for="option in options" v-bind:key="option.index">
-                <span> {{ option }} </span> <br />
+                <ul>
+                  <li>
+                      <span> {{ option }} </span> <br />
+                  </li>
+                </ul>
+                
               </p>
             </li>
             <li
@@ -130,9 +135,9 @@ export default {
       showStartChatBtn: true,
       options: [
         "Please choose from the following options:",
-        " * Pathway",
-        " * Curriculum",
-        " * Find Open Positions",
+        " Pathway",
+        "  Curriculum",
+        " Find Open Positions",
       ],
       greeting1: "Hi ",
       greeting2: "how can I help you today?",
