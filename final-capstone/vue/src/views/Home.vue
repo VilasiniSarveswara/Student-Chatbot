@@ -80,6 +80,16 @@
               <p>
                 <span> {{ message.responseText }} </span>
               </p>
+              <p>
+                <span>
+                 <p>
+                    <a v-bind:href="message.responseLink" target="_blank" >{{ message.responseLink }}</a>
+                  </p>
+                  
+                   
+                </span>
+              </p>
+              
             </li>
           </ul>
           <div class="chat-inputs">
@@ -119,6 +129,15 @@ export default {
         " * Cover Letter Help",
         " * Interview Attire",
       ],
+      curriculumOptions: [
+        " Here are some options to choose from:",
+        " * Inheritance",
+        " * Methods",
+        " * Objects",
+        " * Spring",
+        " * Arrays",
+        " * Classes",
+      ],
       TimesTechnicalLinksShown: 0,
       TimesBehavioralLinksShown: 0,
       NumberOfYes: 0,
@@ -157,6 +176,34 @@ export default {
     this.date = new Date(this.$store.state.weather.localDateAndTime);
     this.localDate =
       this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
+
+    AuthService.getPathwayDetails("technical").then((response) => {
+      if (response.status == 200) {
+        this.$store.commit(
+          "SET_TECHNICAL_RESPONSE_TEXT",
+          response.data.responseTextList
+        );
+        this.$store.commit(
+          "SET_TECHNICAL_RESPONSE_LINKS",
+          response.data.responseLinkList
+        );
+      }
+    });
+
+    AuthService.getPathwayDetails("behavioral").then((response) => {
+      if (response.status === 200) {
+        this.$store.commit(
+          "SET_BEHAVIORAL_RESPONSE_TEXT",
+          response.data.responseTextList
+        );
+        this.$store.commit(
+          "SET_BEHAVIORAL_RESPONSE_LINKS",
+          response.data.responseLinkList
+        );
+      }
+    });
+
+    this.$store.commit("SET_CURRICULUM_OBJECT");
   },
   methods: {
     pathwayRoute() {
@@ -209,12 +256,115 @@ export default {
       this.message = "";
       if (msg.includes("pathway") || msg.includes("pathways")) {
         this.pathwayRoute();
-      } else if (
-        msg.includes("curriculum") ||
-        msg.includes("class") ||
-        msg.includes("homework")
-      ) {
+      } else if (msg.includes("curriculum") || msg.includes("homework")) {
         this.topic = "curriculum";
+
+        this.messages.push({
+          text: "Sure, what are you looking for in " + this.topic + "?",
+          author: "bot",
+        });
+        for (let i = 0; i < this.curriculumOptions.length; i++) {
+          this.messages.push({
+            text: this.curriculumOptions[i],
+            author: "bot",
+          });
+        }
+      } else if (msg.includes("array")) {
+        this.topic = "array";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Arrays,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("method") || msg.includes("function")) {
+        this.topic = "method";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Methods,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("object")) {
+        this.topic = "object";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Objects,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("spring")) {
+        this.topic = "spring";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Spring,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("inheritance")) {
+        this.topic = "inheritance";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Inheritance,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("class")) {
+        this.topic = "class";
+
+        this.messages.push({
+          text: "Here is a link that may be helpful: ",
+          author: "bot",
+        });
+        this.messages.push({
+          responseLink: this.$store.state.curriculumObject.Class,
+          author: "bot",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
       } else if (
         msg.includes("position") ||
         msg.includes("job") ||
@@ -223,37 +373,11 @@ export default {
         this.topic = "job";
       } else if (msg.includes("technical")) {
         this.topic = "technical";
-        if (this.technicalCounter == 0) {
-          AuthService.getPathwayDetails(this.topic).then((response) => {
-            if (response.status == 200) {
-              this.$store.commit(
-                "SET_TECHNICAL_RESPONSE_TEXT",
-                response.data.responseTextList
-              );
-              this.$store.commit(
-                "SET_TECHNICAL_RESPONSE_LINKS",
-                response.data.responseLinkList
-              );
-            }
-          });
-        }
+
         this.printTechnicalResponses();
       } else if (msg.includes("behavioral")) {
         this.topic = "behavioral";
-        if (this.behavioralCounter == 0) {
-          AuthService.getPathwayDetails(this.topic).then((response) => {
-            if (response.status === 200) {
-              this.$store.commit(
-                "SET_BEHAVIORAL_RESPONSE_TEXT",
-                response.data.responseTextList
-              );
-              this.$store.commit(
-                "SET_BEHAVIORAL_RESPONSE_LINKS",
-                response.data.responseLinkList
-              );
-            }
-          });
-        }
+
         this.printBehavioralResponses();
       } else if (msg.includes("cover") || msg.includes("letter")) {
         this.topic = "cover";
@@ -274,7 +398,7 @@ export default {
               i++
             ) {
               this.messages.push({
-                text: this.$store.state.coverResponseLinkList[i],
+                responseLink: this.$store.state.coverResponseLinkList[i],
                 author: "bot",
               });
             }
@@ -309,7 +433,7 @@ export default {
               i++
             ) {
               this.messages.push({
-                text: this.$store.state.attireResponseLinkList[i],
+                responseLink: this.$store.state.attireResponseLinkList[i],
                 author: "bot",
               });
             }
@@ -364,13 +488,13 @@ export default {
                 i++
               ) {
                 this.messages.push({
-                  text: this.$store.state.behavioralResponseLinkList[i],
+                  responseLink: this.$store.state.behavioralResponseLinkList[i],
                   author: "bot",
                 });
               }
             } else if (this.TimesBehavioralLinksShown > 1) {
               this.messages.push({
-                text: this.$store.state.generalResponseLinkList[0],
+                responseLink: this.$store.state.generalResponseLinkList[0],
                 author: "bot",
               }); //end of push
             }
@@ -424,13 +548,13 @@ export default {
                 i++
               ) {
                 this.messages.push({
-                  text: this.$store.state.technicalResponseLinkList[i],
+                  responseLink: this.$store.state.technicalResponseLinkList[i],
                   author: "bot",
                 });
               }
             } else if (this.TimesTechnicalLinksShown > 1) {
               this.messages.push({
-                text: this.$store.state.generalResponseLinkList[0],
+                responseLink: this.$store.state.generalResponseLinkList[0],
                 author: "bot",
               }); //end of push
             }
@@ -453,7 +577,16 @@ export default {
               author: "bot",
             });
           }
-        } else if (this.topic === "cover" || this.topic === "attire") {
+        } else if (
+          this.topic === "cover" ||
+          this.topic === "attire" ||
+          this.topic === "method" ||
+          this.topic === "array" ||
+          this.topic === "object" ||
+          this.topic === "spring" ||
+          this.topic === "inheritance" ||
+          this.topic === "class"
+        ) {
           if (this.message.toLowerCase().includes("no")) {
             this.messages.push({
               text: "Have a wonderful day!",
@@ -503,7 +636,14 @@ export default {
           this.message.toLowerCase().includes("yeah") ||
           this.message.toLowerCase().includes("ya") ||
           this.message.toLowerCase().includes("sure")) &&
-        (this.topic === "cover" || this.topic === "attire")
+        (this.topic === "cover" ||
+          this.topic === "attire" ||
+          this.topic === "method" ||
+          this.topic === "array" ||
+          this.topic === "object" ||
+          this.topic === "spring" ||
+          this.topic === "inheritance" ||
+          this.topic === "class")
       ) {
         this.message = "";
         for (let i = 0; i < this.options.length; i++) {

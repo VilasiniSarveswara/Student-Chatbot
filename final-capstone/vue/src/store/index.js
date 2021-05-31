@@ -32,6 +32,7 @@ export default new Vuex.Store({
     attireResponseLinkList: [],
     quotes: [],
     weather: {},
+    curriculumObject: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -83,6 +84,17 @@ export default new Vuex.Store({
 
     SET_WEATHER(state, weather) {
       state.weather = weather
+    },
+
+    SET_CURRICULUM_OBJECT(state){
+      state.curriculumObject = {
+                "Inheritance" : "https://drive.google.com/file/d/1g5iCo3WwyWfMct7hCfjo1VDoSiufDM_a/view?usp=sharing",
+                "Methods": "https://drive.google.com/file/d/1dgB0PfMn9sOPYeJgtRwBypKJFc7hEDT4/view?usp=sharing",
+                "Objects": "https://drive.google.com/file/d/1-qS2-nFCikn353G-KkfPjg3SL1VdX7P6/view?usp=sharing",
+                "Spring" : "https://drive.google.com/file/d/1DkPD08rRn5MdDkmlvo-o-MJexFXbF5SZ/view?usp=sharing",
+                "Arrays" : "https://drive.google.com/file/d/1eO0-wRWJacxBH9rhaOtXmeQWFzPBvmev/view?usp=sharing",
+                "Class" : "https://drive.google.com/file/d/1J9hnzcptpUPAekj5cb1QoBA1U8Xq8zqr/view?usp=sharing"
+            }
     },
 
     LOGOUT(state) {
