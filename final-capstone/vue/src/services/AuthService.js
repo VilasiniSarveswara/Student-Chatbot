@@ -17,8 +17,8 @@ export default {
     return axios.get(`/pathway/${topic}`)
   },
 
-  updateUserAccountDetails(user) {
-    return axios.put('/updateUserDetails', user)
+  updateUserAccountDetails(username, user_details) {
+    return axios.put(`/updateUserDetails/${username}`, user_details)
   },
 
   getQuotes() {

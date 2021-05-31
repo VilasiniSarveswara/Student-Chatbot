@@ -30,10 +30,11 @@ public class WeatherService {
         ResponseEntity<String> response = restTemplate.exchange(completeApiUrl, HttpMethod.GET,httpEntity,String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
-        System.out.println(jsonNode);
+
         String nameOfLocation = jsonNode.path("location").path("name").asText();
         String stateLocated = jsonNode.path("location").path("region").asText();
         String dateTime = jsonNode.path("location").path("localtime").asText();
+        //String dateTime = jsonNode.path("current").path("last_updated").asText();
         String currentTemperature = jsonNode.path("current").path("temp_f").asText();
        // String str = "2016-03-04 11:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

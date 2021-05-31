@@ -80,12 +80,8 @@ export default {
             this.$store.commit("SET_USER", response.data.user);
 
             AuthService.getUserDetails(this.user.username).then((response) => {
-              console.log(response.data);
-
               const user_details = response.data;
-
               this.$store.commit("SET_USER_DETAILS", user_details);
-
               this.$router.push("/home");
             });
           }

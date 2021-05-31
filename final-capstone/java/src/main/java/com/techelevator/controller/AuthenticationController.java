@@ -53,10 +53,11 @@ public class AuthenticationController {
     }
 
 
-    @RequestMapping(path= "/updateUserDetails", method = RequestMethod.PUT)
-    public RegisterUserDTO updateUserDetails(@RequestBody RegisterUserDTO registerUserDTO){
-        userDAO.updateUserDetails(registerUserDTO);
-        return userDAO.findUserByUsername(registerUserDTO.getUsername());
+    @RequestMapping(path= "/updateUserDetails/{username}", method = RequestMethod.PUT)
+    public RegisterUserDTO updateUserDetails(@RequestBody RegisterUserDTO registerUserDTO, @PathVariable String username ){
+        userDAO.updateUserDetails(username, registerUserDTO);
+        RegisterUserDTO modifiedUser = userDAO.findUserByUsername(username.toLowerCase());
+        return modifiedUser;
     }
 
     @RequestMapping(path = "/userdetails/{username}", method = RequestMethod.GET)

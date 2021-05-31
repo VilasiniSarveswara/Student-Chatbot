@@ -145,7 +145,7 @@ export default {
         this.$store.commit("SET_QUOTES", response.data);
       }
     });
-    AuthService.getWeather(76524).then((response) => {
+    AuthService.getWeather(48390).then((response) => {
       this.$store.commit("SET_WEATHER", response.data);
     });
 

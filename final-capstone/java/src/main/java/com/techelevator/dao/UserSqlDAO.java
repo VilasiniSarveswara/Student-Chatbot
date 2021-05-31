@@ -121,15 +121,16 @@ public class UserSqlDAO implements UserDAO {
     }
 
     @Override
-    public void updateUserDetails(RegisterUserDTO registeredUser) {
-        String username = registeredUser.getUsername();
+    public void updateUserDetails(String username, RegisterUserDTO registeredUser) {
+        String userName = username.toLowerCase();
+        String firstName = registeredUser.getFirstName();
         String lastName = registeredUser.getLastName();
         String emailId = registeredUser.getEmailId();
         long contactNumber = registeredUser.getContactNumber();
         boolean isStudent = registeredUser.isStudent();
-        int id = findIdByUsername(username);
-        String sql = "UPDATE userdetails SET lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; ";
-        jdbcTemplate.update(sql, lastName, emailId, contactNumber, isStudent, id);
+        int id = findIdByUsername(userName);
+        String sql = "UPDATE userdetails SET firstname = ?,lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; ";
+        jdbcTemplate.update(sql,firstName, lastName, emailId, contactNumber, isStudent, id);
     }
 
 

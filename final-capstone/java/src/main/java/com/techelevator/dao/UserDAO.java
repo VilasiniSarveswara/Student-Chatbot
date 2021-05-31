@@ -22,6 +22,6 @@ public interface UserDAO {
 
     // updating existing user details
     // object received will have a valid username
-    void updateUserDetails(RegisterUserDTO registeredUser);
+    void updateUserDetails(String username, RegisterUserDTO registeredUser);
 
 }

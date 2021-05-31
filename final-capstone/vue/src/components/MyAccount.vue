@@ -21,7 +21,7 @@
     </div>
     <h1>My Account</h1>
     <div class="accountdetails">
-      <label class="un" for="username" id="first-input">Username:</label>
+      <label class="un" for="username" id="first-username">Username:</label>
       <h3 id="username" class="un">{{ this.$store.state.user.username }}</h3>
 
       <label for="firstname" class="fn">Firstname:</label>
@@ -52,18 +52,14 @@
 
     <div class="update-form-wrapper" v-if="showForm === true">
       <form class="update" v-on:submit.prevent="">
-        <label for="username" id="first-input">Username:</label>
-        <input
-          type="text"
-          class="input-user"
-          v-model="this.$store.state.user.username"
-        />
+        <label for="username" id="first-username">Username:</label>
+        <input type="text" class="input-user" v-model="user.userName" />
         <br />
         <label for="firstname" id="form-firstname">Firstname:</label>
         <input
           type="text"
           class="input-firstname"
-          v-model="this.$store.state.user_details.firstName"
+          v-model="user_details.firstName"
         />
         <br />
         <label for="lastname" id="form-lastname">Lastame:</label>
@@ -71,21 +67,17 @@
         <input
           type="text"
           class="input-lastname"
-          v-model="this.$store.state.user_details.lastName"
+          v-model="user_details.lastName"
         />
         <br />
         <label for="emailId" id="form-email">Email Id:</label>
-        <input
-          type="text"
-          class="input-email"
-          v-model="this.$store.state.user_details.emailId"
-        />
+        <input type="text" class="input-email" v-model="user_details.emailId" />
         <br />
         <label for="contactnumber" id="form-number">Contact Number:</label>
         <input
           type="text"
           class="input-number"
-          v-model="this.$store.state.user_details.contactNumber"
+          v-model="user_details.contactNumber"
         />
         <br />
         <label for="checkbox" id="form-student"
@@ -94,25 +86,50 @@
         <input
           type="checkbox"
           class="input-student"
-          v-model="this.$store.state.user_details.isStudent"
+          v-model="user_details.isStudent"
         />
 
-        <button>Update</button>
+        <button v-on:click.prevent="updateDetails">Update</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import AuthService from "../services/AuthService.js";
 export default {
   name: "my-account",
-  user: {
-    username: "",
-  },
+
   data() {
     return {
       showForm: false,
+      user_details: {
+        firstName: "",
+        lastName: "",
+        emailId: "",
+        contactNumber: "",
+        isStudent: "",
+      },
+
+      user: {
+        userName: "",
+      },
     };
+  },
+  methods: {
+    updateDetails() {
+      this.showForm = false;
+      AuthService.updateUserAccountDetails(
+        this.user.userName,
+        this.user_details
+      ).then((response) => {
+        if (response.status == 200) {
+          const user_details = response.data;
+          this.$store.commit("SET_USER_DETAILS", user_details);
+          //this.$router.push("/home");
+        }
+      });
+    },
   },
 };
 </script>
@@ -232,7 +249,7 @@ label {
   width: 535px;
 }
 
-.first-input {
+#first-username {
   grid-area: ga-username;
 }
 #username {
