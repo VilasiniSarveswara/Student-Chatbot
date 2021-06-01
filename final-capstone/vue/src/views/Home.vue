@@ -121,6 +121,7 @@ export default {
 
   data() {
     return {
+      fly: false,
       date: {},
       localDate: {},
       pathwayOptions: [
@@ -219,9 +220,8 @@ export default {
         author: "bot",
       });
       this.showStartChatBtn = true;
-      let unicorn = this.$el.getElementById("uImage");
-      unicorn.style.height = "100px";
-      unicorn.classList.add("flybbfly");
+      let unicorn = document.getElementById("uImage");
+      unicorn.classList.add("unicornFly");
     },
 
     pathwayRoute() {
@@ -688,8 +688,8 @@ export default {
   transition: ease-in 1s;
 }
 
-.flybbfly {
-  margin-right: 1000px;
+.unicornFly {
+  margin-right: 3000px;
 }
 
 .logo {
