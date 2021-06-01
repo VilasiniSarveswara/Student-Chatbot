@@ -27,18 +27,19 @@ public class JobSearchService {
         //https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=Chicago%2C%20IL&page=1
 
 
-        String baseUrl = "https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=";
-        String remainder = "%2C%20TX&page=1";
-        String cityToSearch = city;
+     /*   String baseUrl = "https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=";
+        String remainder = "%2C%20NY&page=1";
+        String cityToSearch = city;*/
+        String baseUrl = "https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=New%20York%2C%20NY&page=1";
 
-        String completeApiUrl = baseUrl + cityToSearch + remainder;
+        String completeApiUrl = baseUrl;
         HttpEntity<String> httpEntity = new HttpEntity<>("");
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.exchange(completeApiUrl, HttpMethod.GET, httpEntity, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
         System.out.println(jsonNode);
-        for(int i =0; i < 20; i++){
+        for(int i =0; i < 10; i++){
             String locationLink = jsonNode.path("results").path(i).path("refs").path("landing_page").asText();
             JobSearch job = new JobSearch();
             job.setLandingPageLink(locationLink);

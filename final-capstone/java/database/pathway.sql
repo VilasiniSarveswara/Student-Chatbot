@@ -106,5 +106,7 @@ INSERT INTO technical_questions (responselinks) VALUES ('https://www.javatpoint.
 
 SELECT response, responselinks FROM technical_questions;
 
+UPDATE userdetails SET firstname = ?,lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; 
+
 
 

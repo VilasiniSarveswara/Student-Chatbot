@@ -204,6 +204,12 @@ export default {
     });
 
     this.$store.commit("SET_CURRICULUM_OBJECT");
+
+    AuthService.getOpenJobs().then((response) => {
+      if (response.status === 200) {
+        this.$store.commit(" SET_OPEN_JOBS", response.data);
+      }
+    });
   },
   methods: {
     pathwayRoute() {
