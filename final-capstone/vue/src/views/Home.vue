@@ -29,7 +29,6 @@
         <h6 v-if="this.$store.state.user_details.student">Student</h6>
         <h6 v-else>Alumni</h6>
         <br />
-
         <div class="quotes">{{ this.$store.state.quotes[0].quote }}</div>
         <div class="weather">
           {{ this.$store.state.weather.nameOfLocation }},
@@ -42,6 +41,7 @@
           {{ this.$store.state.weather.currentTemperature }} deg F
         </div>
       </div>
+        <img src="../Images/unicorn.png" alt="Unicorn" v-if="this.showStartChatBtn" id="uImage" width= 300px;>
       <button
         v-if="this.showStartChatBtn"
         class="chat-assistant-button"
@@ -49,6 +49,7 @@
       >
         Start Chat
       </button>
+     
       <div class="chat" v-else>
         <div class="chat-container">
           <ul class="chat-box-list" ref="chatbox">
@@ -217,6 +218,10 @@ export default {
         text: "Have a wonderful day!",
         author: "bot",
       });
+      this.showStartChatBtn = true;
+      let unicorn = this.$el.getElementById("uImage");
+      unicorn.style.height = "100px";
+      unicorn.classList.add("flybbfly");
     },
 
     pathwayRoute() {
@@ -677,6 +682,16 @@ export default {
 </script>
 
 <style scoped>
+#uImage {
+  height: 300px;
+  margin-right: -300px;
+  transition: ease-in 1s;
+}
+
+.flybbfly {
+  margin-right: 1000px;
+}
+
 .logo {
   display: flex;
   flex-direction: row;
