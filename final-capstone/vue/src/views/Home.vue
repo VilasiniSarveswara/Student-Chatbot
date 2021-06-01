@@ -41,7 +41,8 @@
           {{ this.$store.state.weather.currentTemperature }} deg F
         </div>
       </div>
-        <img src="../Images/unicorn.png" alt="Unicorn" v-if="this.showStartChatBtn" id="uImage" width= 300px;>
+      <!-- -->
+        <img src="../Images/unicorn.png" alt="Unicorn"  v-show="this.showStartChatBtn"  id="uImage">
       <button
         v-if="this.showStartChatBtn"
         class="chat-assistant-button"
@@ -60,6 +61,7 @@
                 {{ this.greeting2 }}
               </span>
               <br />
+              <p>{{mainOption}}</p>
               <p v-for="option in options" v-bind:key="option.index">
                 <ul>
                   <li>
@@ -81,15 +83,29 @@
               <p>
                 <span> {{ message.responseText }} </span>
               </p>
+            
               <p>
                 <span>
                  <p>
                     <a v-bind:href="message.responseLink" target="_blank" >{{ message.responseLink }}</a>
                   </p>
-                  
                    
                 </span>
               </p>
+
+              <p>
+                <span>
+                  {{ message.responseImage}}
+                  
+                  <img v-bind:src="message.responseImage"/>
+                  <!-- <img src="../Images/robot-image.png" alt=""> -->
+                  <!-- <v-img :src="message.responseImage"></v-img> -->
+                  <!-- <v-img :src="require(message.responseImage)"></v-img> -->
+                 <!-- <img v-img src="message.responseImage"/>   -->
+
+                </span>
+              </p>
+
               
             </li>
           </ul>
@@ -154,11 +170,22 @@ export default {
       toBeDecidedtopic: "",
       showChatWindow: false,
       showStartChatBtn: true,
+      motivationOptions: [
+         " Here are some options to choose from:",
+        " * Imposter Syndrome",
+        " * Totally Lost",
+        " * Self Doubt",
+        " * Stress",
+        " * Puppies",
+        
+      ],
+      mainOption: "Please choose from the following options:",
       options: [
-        "Please choose from the following options:",
+        
         " Pathway",
         "  Curriculum",
         " Find Open Positions",
+        " Motivations",
       ],
       greeting1: "Hi ",
       greeting2: "how can I help you today?",
@@ -221,6 +248,7 @@ export default {
       });
       this.showStartChatBtn = true;
       let unicorn = document.getElementById("uImage");
+      console.log(unicorn);
       unicorn.classList.add("unicornFly");
     },
 
@@ -287,7 +315,31 @@ export default {
             author: "bot",
           });
         }
-      } else if (msg.includes("array")) {
+      } 
+      
+      else if (msg.includes('motivation')) {
+        this.topic = "motivation";
+
+        for (let i = 0; i < this.motivationOptions.length; i++) {
+          this.messages.push({
+            text: this.motivationOptions[i],
+            author: "bot",
+          });
+        }
+
+      }
+      else if (msg.includes('imposter') || msg.includes('syndrome')) {
+        this.topic = "imposter";
+
+         this.messages.push({
+          responseImage: "../images/impostor_syndrome_1.png",
+          author: "bot",
+        });
+
+      } 
+      
+      
+      else if (msg.includes("array")) {
         this.topic = "array";
 
         this.messages.push({
