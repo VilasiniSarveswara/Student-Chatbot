@@ -27,7 +27,7 @@ export default {
   getWeather(zipCode) {
     return axios.get(`/weather/${zipCode}`)
   },
-  getOpenJobs(city) {
-    return axios.get(`/openJobs/${city}`)
+  getOpenJobs() {
+    return axios.get('/openJobs')
   }
 }

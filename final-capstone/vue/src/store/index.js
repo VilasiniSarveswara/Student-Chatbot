@@ -33,7 +33,7 @@ export default new Vuex.Store({
     quotes: [],
     weather: {},
     curriculumObject: {},
-    openJobsObject: [],
+    openJobsArray: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -97,8 +97,8 @@ export default new Vuex.Store({
         "Class": "https://drive.google.com/file/d/1J9hnzcptpUPAekj5cb1QoBA1U8Xq8zqr/view?usp=sharing"
       }
     },
-    SET_OPEN_JOBS(state, openPositionsObject) {
-      state.openJobsObject = openPositionsObject
+    SET_OPEN_JOBS(state, openPositionsArray) {
+      state.openJobsArray = openPositionsArray
     },
 
     LOGOUT(state) {

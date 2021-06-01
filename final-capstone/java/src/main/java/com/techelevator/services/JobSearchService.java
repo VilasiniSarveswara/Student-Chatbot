@@ -19,7 +19,7 @@ import java.util.List;
 public class JobSearchService {
 
 
-    public List<JobSearch> getOpenJobs(String city) throws JsonProcessingException {
+    public List<JobSearch> getOpenJobs() throws JsonProcessingException {
         List<JobSearch> openJobsList = new ArrayList<>();
         //https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=New%20York%2C%20NY&page=1
         //https://www.themuse.com/api/public/jobs?category=Software%20Engineer&level=Mid%20Level&location=Columbus&page=1
@@ -39,7 +39,7 @@ public class JobSearchService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
         System.out.println(jsonNode);
-        for(int i =0; i < 10; i++){
+        for(int i =0; i < 5; i++){
             String locationLink = jsonNode.path("results").path(i).path("refs").path("landing_page").asText();
             JobSearch job = new JobSearch();
             job.setLandingPageLink(locationLink);

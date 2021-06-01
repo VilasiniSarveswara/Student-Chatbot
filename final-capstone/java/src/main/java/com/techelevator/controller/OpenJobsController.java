@@ -13,8 +13,8 @@ import java.util.List;
 public class OpenJobsController {
     JobSearchService jobService = new JobSearchService();
 
-     @RequestMapping(path="/openJobs/{city}", method= RequestMethod.GET)
-     public List<JobSearch> getOpenJobLinks(@PathVariable String city) throws JsonProcessingException {
-         return jobService.getOpenJobs(city);
+     @RequestMapping(path="/openJobs", method= RequestMethod.GET)
+     public List<JobSearch> getOpenJobLinks() throws JsonProcessingException {
+         return jobService.getOpenJobs();
      }
 }

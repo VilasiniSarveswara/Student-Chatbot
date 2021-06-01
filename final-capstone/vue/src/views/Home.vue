@@ -207,11 +207,18 @@ export default {
 
     AuthService.getOpenJobs().then((response) => {
       if (response.status === 200) {
-        this.$store.commit(" SET_OPEN_JOBS", response.data);
+        this.$store.commit("SET_OPEN_JOBS", response.data);
       }
     });
   },
   methods: {
+    wonderfulDay() {
+      this.messages.push({
+        text: "Have a wonderful day!",
+        author: "bot",
+      });
+    },
+
     pathwayRoute() {
       this.topic = "pathway";
       this.messages.push({
@@ -377,6 +384,22 @@ export default {
         msg.includes("opportunities")
       ) {
         this.topic = "job";
+        this.messages.push({
+          text: "Here is a list of open positions you should explore: ",
+          author: "bot",
+        });
+
+        for (let i = 0; i < this.$store.state.openJobsArray.length; i++) {
+          this.messages.push({
+            responseLink: this.$store.state.openJobsArray[i].landingPageLink,
+            author: "bot",
+          });
+        }
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
       } else if (msg.includes("technical")) {
         this.topic = "technical";
 
@@ -512,16 +535,10 @@ export default {
               this.messages.push();
             }
           } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
-            this.messages.push({
-              text: "Have a wonderful day!",
-              author: "bot",
-            });
+            this.wonderfulDay();
             this.NumberOfYes = 0;
           } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
-            this.messages.push({
-              text: "Have a wonderful day!",
-              author: "bot",
-            });
+            this.wonderfulDay();
             this.NumberOfYes = 0;
             this.NumberOfNo = 0;
             this.TimesTechnicalLinksShown = 0;
@@ -572,16 +589,10 @@ export default {
               this.messages.push();
             }
           } else if (this.NumberOfYes == 1 && this.NumberOfNo == 1) {
-            this.messages.push({
-              text: "Have a wonderful day!",
-              author: "bot",
-            });
+            this.wonderfulDay();
             this.NumberOfYes = 0;
           } else if (this.NumberOfNo == 2 && this.NumberOfYes == 0) {
-            this.messages.push({
-              text: "Have a wonderful day!",
-              author: "bot",
-            });
+            this.wonderfulDay();
           }
         } else if (
           this.topic === "cover" ||
@@ -591,13 +602,11 @@ export default {
           this.topic === "object" ||
           this.topic === "spring" ||
           this.topic === "inheritance" ||
-          this.topic === "class"
+          this.topic === "class" ||
+          this.topic === "job"
         ) {
           if (this.message.toLowerCase().includes("no")) {
-            this.messages.push({
-              text: "Have a wonderful day!",
-              author: "bot",
-            });
+            this.wonderfulDay();
           } else if (this.message.toLowerCase().includes("yes")) {
             for (let i = 0; i < this.pathwayOptions.length; i++) {
               this.messages.push({
@@ -649,7 +658,8 @@ export default {
           this.topic === "object" ||
           this.topic === "spring" ||
           this.topic === "inheritance" ||
-          this.topic === "class")
+          this.topic === "class" ||
+          this.topic === "job")
       ) {
         this.message = "";
         for (let i = 0; i < this.options.length; i++) {
