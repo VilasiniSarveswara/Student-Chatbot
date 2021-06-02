@@ -38,7 +38,7 @@ public class JobSearchService {
         ResponseEntity<String> response = restTemplate.exchange(completeApiUrl, HttpMethod.GET, httpEntity, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
-        System.out.println(jsonNode);
+
         for(int i =0; i < 5; i++){
             String locationLink = jsonNode.path("results").path(i).path("refs").path("landing_page").asText();
             JobSearch job = new JobSearch();

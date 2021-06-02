@@ -12,14 +12,15 @@ public class RegisterUserDTO {
     private String emailId;
     private long contactNumber;
     private boolean isStudent;
+    private int zip;
 
-    public RegisterUserDTO(String firstName, String lastName, String emailId, long contactNumber, boolean isStudent){
+    public RegisterUserDTO(String firstName, String lastName, String emailId, long contactNumber, boolean isStudent, int zip){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.contactNumber = contactNumber;
         this.isStudent = isStudent;
-
+        this.zip = zip;
     }
     public RegisterUserDTO(){};
 
@@ -95,4 +96,11 @@ public class RegisterUserDTO {
         isStudent = student;
     }
 
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
 }

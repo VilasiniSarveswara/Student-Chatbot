@@ -20,3 +20,7 @@ INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstud
 
 ALTER TABLE userdetails
 ALTER COLUMN contactnumber TYPE bigint;
+
+ALTER TABLE userdetails
+ADD COLUMN zip integer;
+

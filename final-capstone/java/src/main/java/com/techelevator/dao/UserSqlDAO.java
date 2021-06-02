@@ -97,8 +97,8 @@ public class UserSqlDAO implements UserDAO {
 
 
         //Insert into userdetails table
-        String sqlInsertIntoUserDetails = "INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent) VALUES (?,?,?,?,?,?);";
-        jdbcTemplate.update(sqlInsertIntoUserDetails,newUserId,user.getFirstName(),user.getLastName(),user.getEmailId(),user.getContactNumber(),user.isStudent());
+        String sqlInsertIntoUserDetails = "INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent, zip) VALUES (?,?,?,?,?,?, ?);";
+        jdbcTemplate.update(sqlInsertIntoUserDetails,newUserId,user.getFirstName(),user.getLastName(),user.getEmailId(),user.getContactNumber(),user.isStudent(), user.getZip());
 
         return userCreated;
     }
@@ -115,7 +115,8 @@ public class UserSqlDAO implements UserDAO {
             String email = results.getString("emailid");
             long phoneNumber = results.getLong("contactnumber");
             boolean isStudent = results.getBoolean("isstudent");
-            registeredUser = new RegisterUserDTO(firstName, lastName, email, phoneNumber, isStudent);
+            int zip = results.getInt("zip");
+            registeredUser = new RegisterUserDTO(firstName, lastName, email, phoneNumber, isStudent, zip);
         }
         return registeredUser;
     }
@@ -129,8 +130,9 @@ public class UserSqlDAO implements UserDAO {
         long contactNumber = registeredUser.getContactNumber();
         boolean isStudent = registeredUser.isStudent();
         int id = findIdByUsername(userName);
-        String sql = "UPDATE userdetails SET firstname = ?,lastname = ?, emailid = ?, contactnumber = ?, isstudent = ? WHERE user_id = ?; ";
-        jdbcTemplate.update(sql,firstName, lastName, emailId, contactNumber, isStudent, id);
+        int zip = registeredUser.getZip();
+        String sql = "UPDATE userdetails SET firstname = ?,lastname = ?, emailid = ?, contactnumber = ?, isstudent = ?, zip = ? WHERE user_id = ?; ";
+        jdbcTemplate.update(sql,firstName, lastName, emailId, contactNumber, isStudent, zip, id);
     }
 
 
