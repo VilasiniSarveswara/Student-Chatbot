@@ -95,8 +95,7 @@
 
               <p>
                 <span>
-                  {{ message.responseImage}}
-                  
+                
                   <img v-bind:src="message.responseImage"/>
                   <!-- <img src="../Images/robot-image.png" alt=""> -->
                   <!-- <v-img :src="message.responseImage"></v-img> -->
@@ -183,7 +182,7 @@ export default {
         " Pathway",
         "  Curriculum",
         " Find Open Positions",
-        " Motivations",
+        " Motivation",
       ],
       greeting1: "Hi ",
       greeting2: "how can I help you today?",
@@ -198,11 +197,15 @@ export default {
     });
     AuthService.getWeather(48390).then((response) => {
       this.$store.commit("SET_WEATHER", response.data);
+
+      this.date = new Date(this.$store.state.weather.localDateAndTime);
+      this.localDate =
+        this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
     });
 
-    this.date = new Date(this.$store.state.weather.localDateAndTime);
-    this.localDate =
-      this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
+    // this.date = new Date(this.$store.state.weather.localDateAndTime);
+    // this.localDate =
+    //   this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
 
     AuthService.getPathwayDetails("technical").then((response) => {
       if (response.status == 200) {
@@ -327,6 +330,55 @@ export default {
 
         this.messages.push({
           responseImage: "../images/impostor_syndrome_1.png",
+          author: "motivation-image",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("lost") || msg.includes("totally")) {
+        this.topic = "lost";
+        this.messages.push({
+          responseImage: "../images/TotallyLost.jpg",
+          author: "motivation-image",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("self") || msg.includes("doubt")) {
+        this.topic = "doubt";
+        this.messages.push({
+          responseImage: "../images/SelfDoubt.jpg",
+          author: "motivation-image",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("stress") || msg.includes("srtess")) {
+        this.topic = "stress";
+        this.messages.push({
+          responseImage: "../images/Confidence.png",
+          author: "motivation-image",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
+          author: "bot",
+        });
+      } else if (msg.includes("puppies") || msg.includes("puppy")) {
+        this.topic = "puppies";
+        this.messages.push({
+          responseImage: "../images/puppies.png",
+          author: "motivation-image",
+        });
+        this.messages.push({
+          text:
+            "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
       } else if (msg.includes("array")) {
@@ -650,7 +702,12 @@ export default {
           this.topic === "spring" ||
           this.topic === "inheritance" ||
           this.topic === "class" ||
-          this.topic === "job"
+          this.topic === "job" ||
+          this.topic === "imposter" ||
+          this.topic === "doubt" ||
+          this.topic === "lost" ||
+          this.topic === "stress" ||
+          this.topic === "puppies"
         ) {
           if (this.message.toLowerCase().includes("no")) {
             this.wonderfulDay();
@@ -706,7 +763,12 @@ export default {
           this.topic === "spring" ||
           this.topic === "inheritance" ||
           this.topic === "class" ||
-          this.topic === "job")
+          this.topic === "job" ||
+          this.topic === "imposter" ||
+          this.topic === "doubt" ||
+          this.topic === "lost" ||
+          this.topic === "stress" ||
+          this.topic === "puppies")
       ) {
         this.message = "";
         for (let i = 0; i < this.options.length; i++) {
@@ -948,6 +1010,18 @@ button:hover {
   word-break: break-all;
   padding-left: 5px;
   border-radius: 10px 10px 1px 10px;
+}
+
+.motivation-image {
+  max-width: 60%;
+  border-radius: 10px 10px 10px 1px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
 }
 </style>
 

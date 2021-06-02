@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class WeatherService {
     public Weather getWeatherFromAPI(int postCode) throws JsonProcessingException {
@@ -37,7 +38,7 @@ public class WeatherService {
         //String dateTime = jsonNode.path("current").path("last_updated").asText();
         String currentTemperature = jsonNode.path("current").path("temp_f").asText();
        // String str = "2016-03-04 11:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm", Locale.US);
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
 
         weather.setNameOfLocation(nameOfLocation);
