@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Username:</label>
       <input
         type="text"
         id="username"
@@ -17,7 +17,7 @@
       />
       <br />
 
-      <label for="first-name">First Name</label>
+      <label for="first-name">First Name:</label>
       <input
         type="text"
         id="firstName"
@@ -27,7 +27,7 @@
       />
       <br />
 
-      <label for="last-name">Last Name</label>
+      <label for="last-name">Last Name:</label>
       <input
         type="text"
         id="lastName"
@@ -37,7 +37,7 @@
       />
       <br />
 
-      <label for="emailId">Email</label>
+      <label for="emailId">Email:</label>
       <input
         type="text"
         id="email"
@@ -47,7 +47,7 @@
       />
       <br />
 
-      <label for="contact-number">Phone Number</label>
+      <label for="contact-number">Phone Number:</label>
       <input
         type="number"
         id="contact-number"
@@ -58,7 +58,7 @@
 
       <!-- TODO need to find how the radio ties into our information to relay that to the database -->
       <br />
-      <label for="userIsStudent">Student </label>
+      <label for="userIsStudent">Student: </label>
       <input
         type="checkbox"
         id="isStudent"
@@ -67,7 +67,7 @@
       />
       <br />
 
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only">Password:</label>
       <input
         type="password"
         id="password"
@@ -85,8 +85,15 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <br />
+      <router-link id="haveAccountButton" :to="{ name: 'login' }"
+        >Have an account?</router-link
+      >
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        id="submit"
+        type="submit"
+      >
         Create Account
       </button>
     </form>
@@ -158,5 +165,62 @@ input {
   width: 200px;
   height: 20px;
   padding-left: 5px;
+}
+
+#username {
+  margin-left: 40px;
+}
+
+#firstName {
+  margin-left: 34px;
+}
+
+#lastName {
+  margin-left: 37px;
+}
+
+#email {
+  margin-left: 80px;
+}
+
+#contact-number {
+  margin-left: 3px;
+}
+
+#isStudent {
+  margin-left: -35px;
+  margin-top: 3px;
+}
+
+#password {
+  margin-left: 45px;
+}
+
+#confirmPassword {
+  margin-left: 130px;
+  margin-top: 7px;
+}
+
+#haveAccountButton {
+  font-size: 18px;
+  font-family: "Oswald", sans-serif;
+  color: #caf0f8;
+  background-color: #0e3a8d;
+  transition: ease-in-out 0.8s;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+#submit {
+  margin-left: 37px;
+  border-radius: 4px;
+}
+
+#haveAccountButton:hover {
+  background-color: #0076b6;
 }
 </style>

@@ -171,17 +171,15 @@ export default {
       showChatWindow: false,
       showStartChatBtn: true,
       motivationOptions: [
-         " Here are some options to choose from:",
+        " Here are some options to choose from:",
         " * Imposter Syndrome",
         " * Totally Lost",
         " * Self Doubt",
         " * Stress",
         " * Puppies",
-        
       ],
       mainOption: "Please choose from the following options:",
       options: [
-        
         " Pathway",
         "  Curriculum",
         " Find Open Positions",
@@ -315,9 +313,7 @@ export default {
             author: "bot",
           });
         }
-      } 
-      
-      else if (msg.includes('motivation')) {
+      } else if (msg.includes("motivation")) {
         this.topic = "motivation";
 
         for (let i = 0; i < this.motivationOptions.length; i++) {
@@ -326,20 +322,14 @@ export default {
             author: "bot",
           });
         }
-
-      }
-      else if (msg.includes('imposter') || msg.includes('syndrome')) {
+      } else if (msg.includes("imposter") || msg.includes("syndrome")) {
         this.topic = "imposter";
 
-         this.messages.push({
+        this.messages.push({
           responseImage: "../images/impostor_syndrome_1.png",
           author: "bot",
         });
-
-      } 
-      
-      
-      else if (msg.includes("array")) {
+      } else if (msg.includes("array")) {
         this.topic = "array";
 
         this.messages.push({
@@ -786,6 +776,7 @@ export default {
 .chat-container {
   width: 100%;
   height: 100%;
+  margin-top: -30px;
 }
 
 .chat-box-list {
@@ -813,6 +804,7 @@ export default {
   border-right: none;
   border-bottom-left-radius: 4px;
   margin: 0;
+  margin-top: 6px;
   padding-left: 15px;
   padding-bottom: 0;
   padding-top: 0;
@@ -837,7 +829,7 @@ export default {
 
 .welcome-wrapper h6 {
   font-size: 25px;
-  margin-top: -10%;
+  margin-top: -35px;
   color: #343a40;
 }
 
