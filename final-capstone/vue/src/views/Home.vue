@@ -795,6 +795,11 @@ export default {
   flex-direction: row;
 }
 
+.sendBtn {
+  margin-top: 5px;
+  height: 53px;
+}
+
 .chatinputbox {
   width: 100%;
   height: 50px;
