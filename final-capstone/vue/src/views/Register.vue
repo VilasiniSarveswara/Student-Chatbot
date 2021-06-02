@@ -46,6 +46,15 @@
         required
       />
       <br />
+      <label for="zipCode">Zip Code:</label>
+      <input
+        type="text"
+        id="zipCode"
+        class="form-control"
+        v-model="user.zipCode"
+        required
+      />
+      <br />
 
       <label for="contact-number">Phone Number:</label>
       <input
@@ -115,6 +124,7 @@ export default {
         firstName: "",
         lastName: "",
         emailId: "",
+        zipCode: "",
         contactNumber: 0,
         isStudent: false,
       },
@@ -173,18 +183,27 @@ input {
 
 #firstName {
   margin-left: 34px;
+  margin-top: -1px;
 }
 
 #lastName {
   margin-left: 37px;
+  margin-top: -1px;
 }
 
 #email {
   margin-left: 80px;
+  margin-top: -1px;
 }
 
 #contact-number {
   margin-left: 3px;
+  margin-top: -1px;
+}
+
+#zipCode {
+  margin-left: 54px;
+  margin-top: -1px;
 }
 
 #isStudent {
@@ -194,6 +213,7 @@ input {
 
 #password {
   margin-left: 45px;
+  margin-top: -1px;
 }
 
 #confirmPassword {
@@ -222,5 +242,13 @@ input {
 
 #haveAccountButton:hover {
   background-color: #0076b6;
+}
+
+form {
+  background-color: rgba(201, 76, 76, 0.3);
+  margin-left: 30px;
+  margin-right: 1100px;
+  padding-left: 15px;
+  padding-bottom: 15px;
 }
 </style>
