@@ -38,9 +38,9 @@
         {{ this.$store.state.user_details.emailId }}
       </h3>
 
-      <label for="zipcode" class="zipdetails">Zip Code:</label>
-      <h3 id="zipcode" class="zipcodeDetails">
-        {{ this.$store.state.user_details.zipCode }}
+      <label for="zip" class="zip">Zip Code:</label>
+      <h3 id="zip" class="zip">
+        {{ this.$store.state.user_details.zip }}
       </h3>
       <label for="contactnumber" class="contact">Contact Number:</label>
       <h3 id="contactnumber" class="contact">
@@ -78,8 +78,8 @@
         <label for="emailId" id="form-email">Email Id:</label>
         <input type="text" class="input-email" v-model="user_details.emailId" />
         <br />
-        <label for="zipCode" id="form-zipCode">Zip Code:</label>
-        <input type="text" class="input-zip" v-model="user_details.zipCode" />
+        <label for="zip" id="form-zip">Zip Code:</label>
+        <input type="text" class="input-zip" v-model="user_details.zip" />
         <br />
         <label for="contactnumber" id="form-number">Contact Number:</label>
         <input
@@ -118,6 +118,7 @@ export default {
         zipCode: "",
         contactNumber: "",
         isStudent: "",
+        zip: "",
       },
 
       user: {
@@ -188,7 +189,8 @@ label {
 .fn,
 .ln,
 .email,
-.contact {
+.contact,
+.zip {
   text-transform: capitalize;
   font-size: 22px;
   color: #221717;
@@ -208,7 +210,8 @@ label {
 .input-firstname,
 .input-lastname,
 .input-email,
-.input-number {
+.input-number,
+.input-zip {
   float: right;
   margin-top: 21px;
   margin-right: 80px;
@@ -222,7 +225,7 @@ label {
 #form-firstname,
 #form-lastname,
 #form-email,
-#form-zipCode,
+#form-zip,
 #form-number,
 #form-student {
   display: inline-block;
@@ -242,7 +245,8 @@ label {
     "ga-firstname ga-firstname-value"
     "ga-lastname ga-lastname-value"
     "ga-email ga-email-value"
-    "ga-contact ga-contact-value";
+    "ga-contact ga-contact-value"
+    "ga-zip ga-zip-value";
   padding: 20px;
   margin-top: 8px;
   margin-left: 30px;
@@ -264,6 +268,9 @@ label {
 }
 #username {
   grid-area: ga-username-value;
+}
+#zip {
+  grid-area: ga-zip-value;
 }
 
 .fn {
@@ -295,7 +302,7 @@ label {
   grid-area: ga-contact;
 }
 .input-zip {
-  margin-left: 148px;
+  grid-area: ga-zip;
 }
 #nav > a {
   font-family: "Poppins", sans-serif;

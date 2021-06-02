@@ -46,12 +46,12 @@
         required
       />
       <br />
-      <label for="zipCode">Zip Code:</label>
+      <label for="zip">Zip Code:</label>
       <input
         type="text"
-        id="zipCode"
+        id="zip"
         class="form-control"
-        v-model="user.zipCode"
+        v-model="user.zip"
         required
       />
       <br />
@@ -124,7 +124,7 @@ export default {
         firstName: "",
         lastName: "",
         emailId: "",
-        zipCode: "",
+        zip: "",
         contactNumber: 0,
         isStudent: false,
       },
@@ -201,7 +201,7 @@ input {
   margin-top: -1px;
 }
 
-#zipCode {
+#zip {
   margin-left: 54px;
   margin-top: -1px;
 }
