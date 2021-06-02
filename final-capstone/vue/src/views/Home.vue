@@ -44,8 +44,8 @@
          </div>
          <div class="usefulLinks">
            <label for="usefuleLinks">Useful Resources</label><br>
-           <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home">Pathway Resources</a><br>
-           <a href="https://v2-3-techelevator-book.netlify.app/">Student Book</a>
+           <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home" class="resources-link">Pathway Resources</a><br>
+           <a href="https://v2-3-techelevator-book.netlify.app/" class="resources-link">Student Book</a>
          </div>
 
 
@@ -844,6 +844,18 @@ export default {
   width: 100%;
   height: 100%;
   margin-top: -30px;
+}
+
+.resources-link {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  color: #1d3557;
+  text-decoration: none;
+}
+
+.resources-link:hover {
+  color: #03045e;
+  text-decoration: underline;
 }
 
 .chat-box-list {
