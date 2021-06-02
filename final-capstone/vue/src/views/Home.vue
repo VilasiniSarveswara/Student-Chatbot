@@ -98,7 +98,7 @@
               <p>
                 <span>
                 
-                  <img v-bind:src="message.responseImage"/>
+                  <img class="motivational-image" v-bind:src="message.responseImage"/>
                   <!-- <img src="../Images/robot-image.png" alt=""> -->
                   <!-- <v-img :src="message.responseImage"></v-img> -->
                   <!-- <v-img :src="require(message.responseImage)"></v-img> -->
@@ -245,17 +245,15 @@ export default {
   },
   methods: {
     wonderfulDay() {
-
       this.messages.push({
-          responseImage: "../images/Success.png",
-          author: "motivation-image",
-        });
+        responseImage: "../images/Success.png",
+        author: "motivation-image",
+      });
 
       this.messages.push({
         text: "Have a wonderful day!",
         author: "bot",
       });
-      
     },
 
     pathwayRoute() {
@@ -791,14 +789,12 @@ export default {
 </script>
 
 <style scoped>
-#uImage {
-  height: 300px;
-  margin-right: -300px;
-  transition: ease-in 1s;
-}
-
-.unicornFly {
-  margin-right: 3000px;
+.motivational-image {
+  width: 475px;
+  border-radius: 15px;
+  padding-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .logo {
@@ -985,7 +981,7 @@ button:hover {
   background-image: linear-gradient(to bottom right, #168aad, #34a0a4);
   width: 80%;
   border-radius: 10px 10px 10px 1px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   padding-left: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -1017,18 +1013,6 @@ button:hover {
   border-radius: 10px 10px 1px 10px;
 }
 
-.motivation-image > img {
-  width: 300px;
-  height: 800px;
-  border-radius: 10px 10px 10px 1px;
-  padding-bottom: 10px;
-  padding-left: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  word-break: break-all;
-}
 .quotes {
   font-family: Open Sans, Oswald, Poppins;
   word-break: break-word;
@@ -1036,7 +1020,7 @@ button:hover {
   margin-right: 4px;
   font-size: 18px;
   font-weight: bold;
-   }
+}
 .weather-wrapper {
   margin-top: 10px;
 }
