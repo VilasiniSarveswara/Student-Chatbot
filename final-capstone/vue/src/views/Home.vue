@@ -44,7 +44,7 @@
          </div>
       </div>
       <!-- -->
-        <img src="../Images/unicorn.png" alt="Unicorn"  v-show="this.showStartChatBtn"  id="uImage">
+      
       <button
         v-if="this.showStartChatBtn"
         class="chat-assistant-button"
@@ -86,17 +86,12 @@
                 <span> {{ message.responseText }} </span>
               </p>
             
-              <p>
+              
                 <span>
                  <p>
                     <a v-bind:href="message.responseLink" target="_blank" >{{ message.responseLink }}</a>
                   </p>
-                   
                 </span>
-              </p>
-
-              <p>
-                <span>
                 
                   <img class="motivational-image" v-bind:src="message.responseImage"/>
                   <!-- <img src="../Images/robot-image.png" alt=""> -->
@@ -104,8 +99,8 @@
                   <!-- <v-img :src="require(message.responseImage)"></v-img> -->
                  <!-- <img v-img src="message.responseImage"/>   -->
 
-                </span>
-              </p>
+               
+              
 
               
             </li>
@@ -921,7 +916,8 @@ button:hover {
 
 #nav > a {
   font-family: "Poppins", sans-serif;
-  font-size: 35px;
+  font-size: 25px;
+  letter-spacing: 5px;
   text-decoration: none;
   color: #caf0f8;
   margin-top: 25px;
@@ -929,8 +925,7 @@ button:hover {
   margin-left: 3%;
   margin-right: 3%;
   text-align: center;
-
-  padding: 8px 20px 5px 20px;
+  padding: 3px 60px 0px 60px;
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
   transition: ease-out 0.8s;
@@ -984,7 +979,7 @@ button:hover {
   padding-bottom: 5px;
   padding-left: 5px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;

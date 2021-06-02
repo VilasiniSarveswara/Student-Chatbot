@@ -37,6 +37,11 @@
       <h3 id="emailId" class="email">
         {{ this.$store.state.user_details.emailId }}
       </h3>
+
+      <label for="zipcode" class="zipdetails">Zip Code:</label>
+      <h3 id="zipcode" class="zipcodeDetails">
+        {{ this.$store.state.user_details.zipCode }}
+      </h3>
       <label for="contactnumber" class="contact">Contact Number:</label>
       <h3 id="contactnumber" class="contact">
         {{ this.$store.state.user_details.contactNumber }}
@@ -73,6 +78,9 @@
         <label for="emailId" id="form-email">Email Id:</label>
         <input type="text" class="input-email" v-model="user_details.emailId" />
         <br />
+        <label for="zipCode" id="form-zipCode">Zip Code:</label>
+        <input type="text" class="input-zip" v-model="user_details.zipCode" />
+        <br />
         <label for="contactnumber" id="form-number">Contact Number:</label>
         <input
           type="text"
@@ -107,6 +115,7 @@ export default {
         firstName: "",
         lastName: "",
         emailId: "",
+        zipCode: "",
         contactNumber: "",
         isStudent: "",
       },
@@ -213,6 +222,7 @@ label {
 #form-firstname,
 #form-lastname,
 #form-email,
+#form-zipCode,
 #form-number,
 #form-student {
   display: inline-block;
@@ -284,20 +294,24 @@ label {
 .contact {
   grid-area: ga-contact;
 }
+.input-zip {
+  margin-left: 148px;
+}
 #nav > a {
   font-family: "Poppins", sans-serif;
-  font-size: 35px;
+  font-size: 25px;
+  letter-spacing: 3px;
   text-decoration: none;
   color: #caf0f8;
   margin-top: 25px;
   margin-bottom: 20px;
-  padding: 8px 20px 5px 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+  text-align: center;
+  padding: 3px 60px 0px 60px;
   background-image: linear-gradient(to bottom left, #168aad, #1a759f, #1e6091);
   border-radius: 8px;
   transition: ease-out 0.8s;
-  width: 260px;
-  height: 60px;
-  text-align: center;
 }
 
 #nav > a:hover {
