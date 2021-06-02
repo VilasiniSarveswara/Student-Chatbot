@@ -45,7 +45,7 @@
          <div class="usefulLinks">
            <label for="usefuleLinks">Useful Resources</label><br>
            <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home" class="resources-link">Pathway Resources</a><br>
-           <a href="https://v2-3-techelevator-book.netlify.app/" class="resources-link">Student Book</a>
+           <a href="https://v2-3-techelevator-book.netlify.app/" class="resources-link">Student Text Book</a>
          </div>
 
 
@@ -801,6 +801,17 @@ export default {
   margin-bottom: 5px;
 }
 
+.usefulLinks {
+  background-color: rgba(201, 76, 76, 0.3);
+  background-position: 65px;
+  margin-right: 15px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 .logo {
   display: flex;
   flex-direction: row;
@@ -831,12 +842,10 @@ export default {
 
 .chat {
   border: 1px solid gray;
-  width: 60vw;
+  width: 50vw;
   height: 80vh;
   border-radius: 4px;
   background-color: white;
-  width: 70%;
-  height: 80%;
   margin-top: 3em;
 }
 
@@ -849,7 +858,7 @@ export default {
 .resources-link {
   font-family: Poppins, sans-serif;
   font-size: 18px;
-  color: #1d3557;
+  color: #caf0f8;
   text-decoration: none;
 }
 
@@ -904,6 +913,7 @@ export default {
   text-transform: capitalize;
   font-family: "Poppins", sans-serif;
   margin-left: 10px;
+  width: 40vw;
 }
 
 .welcome-wrapper h2 {
