@@ -31,17 +31,24 @@
         <br />
         <div class="quotes">{{ this.$store.state.quotes[0].quote }}</div>
         <div class= "weather-wrapper">       
-        <div class="weather">
+          <div class="weather">
           {{ this.$store.state.weather.nameOfLocation }},
           {{ this.$store.state.weather.stateLocated }}
-        </div>
-        <div class="weather">
-          {{ this.localDate }}
-        </div>
-        <div class="weather">
-          {{ this.$store.state.weather.currentTemperature }} F
-        </div>
+          </div>
+          <div class="weather">
+            {{ this.localDate }}
+          </div>
+          <div class="weather">
+            {{ this.$store.state.weather.currentTemperature }} F <br><br>
+          </div>
          </div>
+         <div class="usefulLinks">
+           <label for="usefuleLinks">Useful Resources</label><br>
+           <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home">Pathway Resources</a><br>
+           <a href="https://v2-3-techelevator-book.netlify.app/">Student Book</a>
+         </div>
+
+
       </div>
       <!-- -->
       

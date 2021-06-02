@@ -24,3 +24,4 @@ ALTER COLUMN contactnumber TYPE bigint;
 ALTER TABLE userdetails
 ADD COLUMN zip integer;
 
+UPDATE userdetails SET zip = 76524 WHERE user_id = 6 OR user_id = 7 OR user_id = 8 OR user_id = 9;
