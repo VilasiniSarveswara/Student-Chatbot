@@ -30,6 +30,7 @@
         <h6 v-else>Alumni</h6>
         <br />
         <div class="quotes">{{ this.$store.state.quotes[0].quote }}</div>
+        <div class= "weather-wrapper">       
         <div class="weather">
           {{ this.$store.state.weather.nameOfLocation }},
           {{ this.$store.state.weather.stateLocated }}
@@ -38,8 +39,9 @@
           {{ this.localDate }}
         </div>
         <div class="weather">
-          {{ this.$store.state.weather.currentTemperature }} deg F
+          {{ this.$store.state.weather.currentTemperature }} F
         </div>
+         </div>
       </div>
       <!-- -->
         <img src="../Images/unicorn.png" alt="Unicorn"  v-show="this.showStartChatBtn"  id="uImage">
@@ -243,14 +245,17 @@ export default {
   },
   methods: {
     wonderfulDay() {
+
+      this.messages.push({
+          responseImage: "../images/Success.png",
+          author: "motivation-image",
+        });
+
       this.messages.push({
         text: "Have a wonderful day!",
         author: "bot",
       });
-      this.showStartChatBtn = true;
-      let unicorn = document.getElementById("uImage");
-      console.log(unicorn);
-      unicorn.classList.add("unicornFly");
+      
     },
 
     pathwayRoute() {
@@ -1012,8 +1017,9 @@ button:hover {
   border-radius: 10px 10px 1px 10px;
 }
 
-.motivation-image {
-  max-width: 60%;
+.motivation-image > img {
+  width: 300px;
+  height: 800px;
   border-radius: 10px 10px 10px 1px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -1022,6 +1028,17 @@ button:hover {
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;
+}
+.quotes {
+  font-family: Open Sans, Oswald, Poppins;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-right: 4px;
+  font-size: 18px;
+  font-weight: bold;
+   }
+.weather-wrapper {
+  margin-top: 10px;
 }
 </style>
 
