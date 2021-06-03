@@ -26,7 +26,7 @@
         <h2 id="welcome-message">
           Welcome, {{ this.$store.state.user_details.firstName }}!
         </h2>
-        <h6 v-if="this.$store.state.user_details.student">Student</h6>
+        <h6 v-if="this.$store.state.user_details.isStudent">Student</h6>
         <h6 v-else>Alumni</h6>
         <br />
         <div class="quotes">{{ this.$store.state.quotes[0].quote }}</div>

@@ -7,6 +7,7 @@ import com.techelevator.model.JobSearch;
 import com.techelevator.model.Weather;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -33,7 +34,9 @@ public class JobSearchService {
         String baseUrl = "https://www.themuse.com/api/public/jobs?category=IT&category=Software%20Engineer&category=UX&level=Entry%20Level&level=Mid%20Level&location=New%20York%2C%20NY&page=1";
 
         String completeApiUrl = baseUrl;
-        HttpEntity<String> httpEntity = new HttpEntity<>("");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("user-agent", "PostmanRuntime/7.26.8");
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.exchange(completeApiUrl, HttpMethod.GET, httpEntity, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
