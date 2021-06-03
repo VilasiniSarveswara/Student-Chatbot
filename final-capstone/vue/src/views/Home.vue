@@ -44,8 +44,8 @@
          </div>
          <div class="usefulLinks">
            <label for="usefuleLinks">Useful Resources</label><br>
-           <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home" class="resources-link">Pathway Resources</a><br>
-           <a href="https://v2-3-techelevator-book.netlify.app/" class="resources-link">Student Text Book</a>
+           <a href="https://sites.google.com/techelevator.com/nlrpathwayresourcepage/home" target="_blank" class="resources-link">Pathway Resources</a><br>
+           <a href="https://v2-3-techelevator-book.netlify.app/" target="_blank" class="resources-link">Student Text Book</a>
          </div>
 
 
@@ -308,9 +308,18 @@ export default {
     topicToBeDecided(message) {
       var msg = message.toLowerCase();
       this.message = "";
-      if (msg.includes("pathway") || msg.includes("pathways")) {
+      if (
+        msg.includes("pathway") ||
+        msg.includes("pthaway") ||
+        msg.includes("pathawy")
+      ) {
         this.pathwayRoute();
-      } else if (msg.includes("curriculum") || msg.includes("homework")) {
+      } else if (
+        msg.includes("curriculum") ||
+        msg.includes("curriculim") ||
+        msg.includes("cirriculum") ||
+        msg.includes("home")
+      ) {
         this.topic = "curriculum";
 
         this.messages.push({
@@ -323,7 +332,7 @@ export default {
             author: "bot",
           });
         }
-      } else if (msg.includes("motivation")) {
+      } else if (msg.includes("mot")) {
         this.topic = "motivation";
 
         for (let i = 0; i < this.motivationOptions.length; i++) {
@@ -332,7 +341,11 @@ export default {
             author: "bot",
           });
         }
-      } else if (msg.includes("imposter") || msg.includes("syndrome")) {
+      } else if (
+        msg.includes("imposter") ||
+        msg.includes("syndrome") ||
+        msg.includes("impostor")
+      ) {
         this.topic = "imposter";
 
         this.messages.push({
@@ -344,7 +357,11 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("lost") || msg.includes("totally")) {
+      } else if (
+        msg.includes("lost") ||
+        msg.includes("totally") ||
+        msg.includes("lsot")
+      ) {
         this.topic = "lost";
         this.messages.push({
           responseImage: "../images/TotallyLost.jpg",
@@ -355,7 +372,11 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("self") || msg.includes("doubt")) {
+      } else if (
+        msg.includes("self") ||
+        msg.includes("dou") ||
+        msg.includes("slef")
+      ) {
         this.topic = "doubt";
         this.messages.push({
           responseImage: "../images/SelfDoubt.jpg",
@@ -377,7 +398,11 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("puppies") || msg.includes("puppy")) {
+      } else if (
+        msg.includes("puppies") ||
+        msg.includes("pup") ||
+        msg.includes("dog")
+      ) {
         this.topic = "puppies";
         this.messages.push({
           responseImage: "../images/puppies.png",
@@ -388,7 +413,7 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("array")) {
+      } else if (msg.includes("array") || msg.includes("aray")) {
         this.topic = "array";
 
         this.messages.push({
@@ -404,7 +429,12 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("method") || msg.includes("function")) {
+      } else if (
+        msg.includes("method") ||
+        msg.includes("function") ||
+        msg.includes("fucniton") ||
+        msg.includes("fucntion")
+      ) {
         this.topic = "method";
 
         this.messages.push({
@@ -420,7 +450,7 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("object")) {
+      } else if (msg.includes("object") || msg.includes("obejct")) {
         this.topic = "object";
 
         this.messages.push({
@@ -436,7 +466,7 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("spring")) {
+      } else if (msg.includes("spring") || msg.includes("spirng")) {
         this.topic = "spring";
 
         this.messages.push({
@@ -452,7 +482,7 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("inheritance")) {
+      } else if (msg.includes("inheritance") || msg.includes("inheritence")) {
         this.topic = "inheritance";
 
         this.messages.push({
@@ -468,7 +498,7 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("class")) {
+      } else if (msg.includes("clas") || msg.includes("cals")) {
         this.topic = "class";
 
         this.messages.push({
@@ -506,15 +536,15 @@ export default {
             "I hope that was helpful, do you need help on any other topics?",
           author: "bot",
         });
-      } else if (msg.includes("technical")) {
+      } else if (msg.includes("tech") || msg.includes("tehc")) {
         this.topic = "technical";
 
         this.printTechnicalResponses();
-      } else if (msg.includes("behavioral")) {
+      } else if (msg.includes("behav")) {
         this.topic = "behavioral";
 
         this.printBehavioralResponses();
-      } else if (msg.includes("cover") || msg.includes("letter")) {
+      } else if (msg.includes("cov") || msg.includes("letter")) {
         this.topic = "cover";
         AuthService.getPathwayDetails(this.topic).then((response) => {
           if (response.status === 200) {
