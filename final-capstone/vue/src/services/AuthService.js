@@ -7,6 +7,7 @@ export default {
   },
 
   register(user) {
+    console.log(user)
     return axios.post('/register', user)
   },
   getUserDetails(username) {

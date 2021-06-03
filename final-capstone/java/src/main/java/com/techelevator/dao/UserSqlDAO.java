@@ -98,7 +98,7 @@ public class UserSqlDAO implements UserDAO {
 
         //Insert into userdetails table
         String sqlInsertIntoUserDetails = "INSERT INTO userdetails (user_id,firstname,lastname,emailid,contactnumber,isstudent, zip) VALUES (?,?,?,?,?,?, ?);";
-        jdbcTemplate.update(sqlInsertIntoUserDetails,newUserId,user.getFirstName(),user.getLastName(),user.getEmailId(),user.getContactNumber(),user.isStudent(), user.getZip());
+        jdbcTemplate.update(sqlInsertIntoUserDetails,newUserId,user.getFirstName(),user.getLastName(),user.getEmailId(),user.getContactNumber(),user.getIsStudent(), user.getZip());
 
         return userCreated;
     }
@@ -128,7 +128,7 @@ public class UserSqlDAO implements UserDAO {
         String lastName = registeredUser.getLastName();
         String emailId = registeredUser.getEmailId();
         long contactNumber = registeredUser.getContactNumber();
-        boolean isStudent = registeredUser.isStudent();
+        boolean isStudent = registeredUser.getIsStudent();
         int id = findIdByUsername(userName);
         int zip = registeredUser.getZip();
         String sql = "UPDATE userdetails SET firstname = ?,lastname = ?, emailid = ?, contactnumber = ?, isstudent = ?, zip = ? WHERE user_id = ?; ";

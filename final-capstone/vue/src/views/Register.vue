@@ -67,13 +67,8 @@
 
       <!-- TODO need to find how the radio ties into our information to relay that to the database -->
       <br />
-      <label for="userIsStudent">Student: </label>
-      <input
-        type="checkbox"
-        id="isStudent"
-        v-model="user.isStudent"
-        :checked="true"
-      />
+      <label for="isStudent">Student: </label>
+      <input type="checkbox" id="isStudent" v-model="user.isStudent" />
       <br />
 
       <label for="password" class="sr-only">Password:</label>
@@ -126,7 +121,7 @@ export default {
         emailId: "",
         zip: "",
         contactNumber: 0,
-        isStudent: false,
+        isStudent: true,
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
